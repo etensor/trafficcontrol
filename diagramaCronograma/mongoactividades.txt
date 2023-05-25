@@ -1,0 +1,22 @@
+#import pymongo
+#from actividad import *
+#from add_actividad import add_level
+#from cronograma import data
+
+# Create a MongoDB client and database
+#client = pymongo.MongoClient("mongodb://localhost:27017/")
+#db = client["mydatabase"]
+
+
+# Create some activities
+
+
+'''
+# Store the activities in the database
+activities_collection = db["activities"]
+activities_collection.insert_many([activity1.to_dict(), activity2.to_dict()])
+
+# Retrieve the activities from the database
+activities_data = activities_collection.find()
+activities = [Activity.from_dict(data) for data in activities_data]
+'''

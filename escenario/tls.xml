@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-03-29 18:13:25 by Eclipse SUMO netedit Version 1.19.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
+
+    <input>
+        <sumocfg-file value="/home/etensor/Tesis/sumo/sumo/tools/2024-03-29-17-15-20/osm.sumocfg"/>
+        <additional-files value="/home/etensor/Tesis/sumo/sumo/tools/2024-03-29-17-15-20/osm.poly.xml.gz"/>
+        <route-files value="/home/etensor/Tesis/sumo/sumo/tools/2024-03-29-17-15-20/osm.bus.trips.xml,/home/etensor/Tesis/sumo/sumo/tools/2024-03-29-17-15-20/osm.motorcycle.trips.xml,/home/etensor/Tesis/sumo/sumo/tools/2024-03-29-17-15-20/osm.passenger.trips.xml"/>
+        <sumo-net-file value="/home/etensor/Tesis/sumo/sumo/tools/2024-03-29-17-15-20/osm.net.xml.gz"/>
+    </input>
+
+    <output>
+        <output.street-names value="true"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="0"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.50"/>
+        <rectangular-lane-cut value="0"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="0"/>
+    </pedestrian>
+
+    <netedit>
+        <ignore.routeelements value="false"/>
+    </netedit>
+
+</configuration>
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <tlLogic id="cluster_2164402551_2164402561_2164664296_2164664304_#8more" type="actuated" programID="0" offset="0">
+        <phase duration="40" state="GGGGgggrrrrrrrrrrrrrrrrr" minDur="5" maxDur="50"/>
+        <phase duration="3" state="yyyyyyyyyyyyrrrrrrrrrrrr"/>
+        <phase duration="30" state="rrrrrrrGGGGgrrrrrrrrrrrr" minDur="5" maxDur="50"/>
+        <phase duration="3" state="rrrrrrryyyyyyyyyyrrrrrrr"/>
+        <phase duration="30" state="rrrrrrrrrrrrGGGGgrrrrrrr" minDur="5" maxDur="50"/>
+        <phase duration="3" state="rrrrrrrrrrrryyyyyyyyyyyy"/>
+        <phase duration="30" state="rrrrrrrrrrrrrrrrrgGGGGgg" minDur="5" maxDur="50"/>
+        <phase duration="3" state="yyyyyyyrrrrrrrrrryyyyyyy"/>
+    </tlLogic>
+</additional>

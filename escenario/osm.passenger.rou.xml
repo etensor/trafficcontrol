@@ -3,7 +3,7 @@
 <!-- generated on 2024-05-28 03:34:40.397629 by randomTrips.py UNKNOWN
 <configuration>
     <net-file value="osm.net.xml"/>
-    <additional-files value="osm.poly.xml,detectores.xml,osm.passenger.trips.xml"/>
+    <additional-files value="osm.poly.xml,osm.passenger.trips.xml"/>
     <output-trip-file value="osm.passenger.rou.xml"/>
     <route-file value="osm.rou.xml"/>
     <end value="6000.0"/>

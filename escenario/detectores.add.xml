@@ -1,18 +1,26 @@
-<additional>
-    <!-- Detectores para el semáforo en cluster_2164402551_2164402561_2164664296_2164664304_#8more -->
-    <inductionLoop id="detector_570129387_0_0"  friendlyPos="true" lane="570129387_0" pos="-20" freq="1" file="detector_output_570129387_0_0.xml"/>
-    <inductionLoop id="detector_570129387_0_1"  friendlyPos="true" lane="570129387_0" pos="-20" freq="1" file="detector_output_570129387_0_1.xml"/>
-    <inductionLoop id="detector_570129387_1_1"  friendlyPos="true" lane="570129387_1" pos="-20" freq="1" file="detector_output_570129387_1_1.xml"/>
-    <inductionLoop id="detector_570129387_2_2"  friendlyPos="true" lane="570129387_2" pos="-20" freq="1" file="detector_output_570129387_2_2.xml"/>
-    <inductionLoop id="detector_570129394#0_0_7" friendlyPos="true" lane="570129394#0_0" pos="-20" freq="1" file="detector_output_570129394#0_0_7.xml"/>
-    <inductionLoop id="detector_570129394#0_1_8" friendlyPos="true" lane="570129394#0_1" pos="-20" freq="1" file="detector_output_570129394#0_1_8.xml"/>
-    <inductionLoop id="detector_570129394#0_2_9" friendlyPos="true" lane="570129394#0_2" pos="-20" freq="1" file="detector_output_570129394#0_2_9.xml"/>
-    <inductionLoop id="detector_571505150_0_12" friendlyPos="true" lane="571505150_0" pos="-20" freq="1" file="detector_output_571505150_0_12.xml"/>
-    <inductionLoop id="detector_571505150_1_13" friendlyPos="true" lane="571505150_1" pos="-20" freq="1" file="detector_output_571505150_1_13.xml"/>
-    <inductionLoop id="detector_571505150_2_14" friendlyPos="true" lane="571505150_2" pos="-20" freq="1" file="detector_output_571505150_2_14.xml"/>
-    <inductionLoop id="detector_571505150_3_15" friendlyPos="true" lane="571505150_3" pos="-20" freq="1" file="detector_output_571505150_3_15.xml"/>
-    <inductionLoop id="detector_570129391_0_17" friendlyPos="true" lane="570129391_0" pos="-20" freq="1" file="detector_output_570129391_0_17.xml"/>
-    <inductionLoop id="detector_570129391_1_19" friendlyPos="true" lane="570129391_1" pos="-20" freq="1" file="detector_output_570129391_1_19.xml"/>
-    <inductionLoop id="detector_570129391_2_20" friendlyPos="true" lane="570129391_2" pos="-20" freq="1" file="detector_output_570129391_2_20.xml"/>
-    <inductionLoop id="detector_570129391_2_21" friendlyPos="true" lane="570129391_2" pos="-20" freq="1" file="detector_output_570129391_2_21.xml"/>
-</additional>
+<!-- <additional>
+    <timedEvent type="SaveTLSProgram" sources="semaforos" dest="tls_state.xml"/>
+
+    <!-- Detectores para el semáforo -->
+
+    <inductionLoop id="E1Sensor_E2_0" lane="E2_0" pos="-2.00" period="1.00" file="logs/output_E2_0.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_E2_1" lane="E2_1" pos="-2.00" period="1.00" file="logs/output_E2_1.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_E2_2" lane="E2_2" pos="-2.00" period="1.00" file="logs/output_E2_2.xml" friendlyPos="1"/>
+
+    <inductionLoop id="E1Sensor_N0_0" lane="N0_0" pos="-2.00" period="1.00" file="logs/output_N0_0_0.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_N0_1" lane="N0_1" pos="-2.00" period="1.00" file="logs/output_N0_1.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_N0_2" lane="N0_2" pos="-2.00" period="1.00" file="logs/output_N0_2.xml" friendlyPos="1"/>
+    
+
+
+    <inductionLoop id="E1Sensor_W0_0" lane="W0_0" pos="-2.00" period="1.00" file="logs/output_W0_0.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_W0_1" lane="W0_1" pos="-2.00" period="1.00" file="logs/output_W0_1.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_W0_2" lane="W0_2" pos="-2.00" period="1.00" file="logs/output_W0_2.xml" friendlyPos="1"/>
+    
+    <inductionLoop id="E1Sensor_S2_0" lane="S2_0" pos="-2.00" period="1.00" file="logs/output_S2_0.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_S2_1" lane="S2_1" pos="-2.00" period="1.00" file="logs/output_S2_1.xml" friendlyPos="1"/>
+    <inductionLoop id="E1Sensor_S2_2" lane="S2_2" pos="-2.00" period="1.00" file="logs/output_S2_2.xml" friendlyPos="1"/>
+    
+    
+
+</additional> -->

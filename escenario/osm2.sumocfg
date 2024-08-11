@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-06-01 19:18:13 by Eclipse SUMO sumo Version 1.19.0
+<!-- generated on 2024-08-10 19:02:18 by Eclipse SUMO sumo Version 1.19.0
 -->
 
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
@@ -10,6 +10,10 @@
         <route-files value="routes.rou.xml"/>
         <additional-files value="osm.poly.add.xml"/>
     </input>
+
+    <time>
+        <step-length value="0.10"/>
+    </time>
 
     <processing>
         <ignore-route-errors value="true"/>

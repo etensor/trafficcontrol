@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-06-01 19:18:13 by Eclipse SUMO netedit Version 1.19.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
+
+    <input>
+        <sumocfg-file value="osm2.sumocfg"/>
+        <additional-files value="osm.poly.add.xml"/>
+        <route-files value="routes.rou.xml"/>
+        <sumo-net-file value="osm.net.xml"/>
+    </input>
+
+    <output>
+        <output-file value="osm.net.xml"/>
+        <output.street-names value="true"/>
+    </output>
+
+    <processing>
+        <geometry.min-radius.fix.railways value="false"/>
+        <geometry.max-grade.fix value="false"/>
+        <offset.disable-normalization value="true"/>
+        <lefthand value="0"/>
+    </processing>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+        <junctions.corner-detail value="5"/>
+        <junctions.limit-turn-speed value="5.50"/>
+        <rectangular-lane-cut value="0"/>
+    </junctions>
+
+    <pedestrian>
+        <walkingareas value="0"/>
+    </pedestrian>
+
+    <netedit>
+        <ignore.routeelements value="false"/>
+    </netedit>
+
+</configuration>
+-->
+
+<net version="1.16" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="8520686.43,-377303.33" convBoundary="0.00,0.00,1013.42,1187.98" origBoundary="-76.542629,3.387398,-76.532869,3.398051" projParameter="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs"/>
+
+    <type id="highway.secondary" priority="11" numLanes="1" speed="27.78" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.secondary_link" priority="6" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+    <type id="highway.tertiary" priority="10" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
+
+    <edge id=":356854809-AddedOffRampNode_0" function="internal">
+        <lane id=":356854809-AddedOffRampNode_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.20" shape="630.26,678.08 627.85,678.75 626.40,679.95 624.95,681.16 622.54,681.85"/>
+        <lane id=":356854809-AddedOffRampNode_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.20" shape="630.26,678.08 622.30,678.65"/>
+        <lane id=":356854809-AddedOffRampNode_0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.20" shape="630.04,674.89 622.06,675.46"/>
+        <lane id=":356854809-AddedOffRampNode_0_3" index="3" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.20" shape="629.83,671.69 621.82,672.27"/>
+    </edge>
+    <edge id=":3622576381_0" function="internal">
+        <lane id=":3622576381_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="15.27" length="2.70" shape="529.35,688.92 528.57,689.05 528.05,689.25 527.54,689.46 526.76,689.63"/>
+    </edge>
+    <edge id=":3622576381_1" function="internal">
+        <lane id=":3622576381_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="3.01" shape="529.11,685.73 526.28,685.94"/>
+        <lane id=":3622576381_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="3.01" shape="528.88,682.54 525.87,682.77"/>
+        <lane id=":3622576381_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="3.01" shape="528.64,679.35 525.47,679.59"/>
+    </edge>
+    <edge id=":3622576454_0" function="internal">
+        <lane id=":3622576454_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="18.05" length="3.11" shape="504.54,715.28 504.65,718.39"/>
+    </edge>
+    <edge id=":3622576454_1" function="internal">
+        <lane id=":3622576454_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.06" shape="501.24,715.56 501.46,718.62"/>
+        <lane id=":3622576454_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.06" shape="498.05,715.78 498.26,718.84"/>
+        <lane id=":3622576454_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.06" shape="494.85,716.00 495.07,719.06"/>
+    </edge>
+    <edge id=":570129388-AddedOnRampNode_0" function="internal">
+        <lane id=":570129388-AddedOnRampNode_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.00" shape="626.64,656.02 634.62,655.37"/>
+        <lane id=":570129388-AddedOnRampNode_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.00" shape="626.90,659.21 634.88,658.56"/>
+        <lane id=":570129388-AddedOnRampNode_0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.00" shape="627.16,662.40 635.13,661.75"/>
+    </edge>
+    <edge id=":572479039#2-AddedOnRampNode_0" function="internal">
+        <lane id=":572479039#2-AddedOnRampNode_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="7.96" shape="508.02,812.84 508.71,820.65"/>
+        <lane id=":572479039#2-AddedOnRampNode_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="7.96" shape="504.83,813.07 505.53,820.99"/>
+        <lane id=":572479039#2-AddedOnRampNode_0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="7.96" shape="501.64,813.29 502.35,821.33"/>
+    </edge>
+    <edge id=":J1_0" function="internal">
+        <lane id=":J1_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="15.27" length="25.24" shape="524.26,658.09 528.38,659.16 533.85,659.66 540.79,659.63 549.32,659.11"/>
+    </edge>
+    <edge id=":J1_1" function="internal">
+        <lane id=":J1_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="26.07" shape="523.65,661.72 549.58,662.30"/>
+        <lane id=":J1_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="26.07" shape="523.78,664.92 549.84,665.48"/>
+        <lane id=":J1_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="26.07" shape="523.91,668.11 550.10,668.67"/>
+    </edge>
+    <edge id=":J2_0" function="internal">
+        <lane id=":J2_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="0.30" shape="495.12,629.59 495.14,629.90"/>
+        <lane id=":J2_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="0.30" shape="491.93,629.82 491.95,630.12"/>
+        <lane id=":J2_0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="0.30" shape="488.74,630.06 488.76,630.34"/>
+    </edge>
+    <edge id=":J4_0" function="internal">
+        <lane id=":J4_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="18.05" length="23.73" shape="493.21,602.74 494.14,610.62 495.73,616.82 497.55,621.68 499.19,625.54"/>
+    </edge>
+    <edge id=":J4_1" function="internal">
+        <lane id=":J4_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="23.94" shape="493.21,602.74 494.90,626.55"/>
+        <lane id=":J4_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="23.94" shape="490.01,602.91 491.71,626.79"/>
+        <lane id=":J4_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="23.94" shape="486.81,603.08 488.51,627.02"/>
+    </edge>
+    <edge id=":main_interseccion_0" function="internal">
+        <lane id=":main_interseccion_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="29.19" shape="470.71,695.53 468.80,692.38 463.66,690.43 455.29,689.68 443.70,690.14"/>
+    </edge>
+    <edge id=":main_interseccion_1" function="internal">
+        <lane id=":main_interseccion_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="43.61" shape="470.71,695.53 468.21,651.98"/>
+        <lane id=":main_interseccion_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="43.61" shape="473.91,695.32 471.40,651.78"/>
+        <lane id=":main_interseccion_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="43.61" shape="477.10,695.10 474.59,651.58"/>
+    </edge>
+    <edge id=":main_interseccion_4" function="internal">
+        <lane id=":main_interseccion_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="40.70" shape="477.10,695.10 479.65,686.93 486.61,677.55 495.38,669.70 503.31,666.15"/>
+        <lane id=":main_interseccion_4_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="42.06" shape="477.10,695.10 478.04,684.62 482.76,676.83 491.26,671.74 503.55,669.34"/>
+    </edge>
+    <edge id=":main_interseccion_6" function="internal">
+        <lane id=":main_interseccion_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="7.06" length="23.74" shape="477.10,695.10 480.75,688.75 484.67,686.45 488.86,688.20 493.32,694.01"/>
+    </edge>
+    <edge id=":main_interseccion_7" function="internal">
+        <lane id=":main_interseccion_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="61.26" shape="504.90,687.59 443.70,690.14"/>
+        <lane id=":main_interseccion_7_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="61.26" shape="504.66,684.40 443.44,686.96"/>
+        <lane id=":main_interseccion_7_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="61.26" shape="504.43,681.20 443.44,686.96"/>
+    </edge>
+    <edge id=":main_interseccion_10" function="internal">
+        <lane id=":main_interseccion_10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="45.74" shape="504.43,681.20 495.61,678.14 484.80,670.07 475.55,660.22 471.40,651.78"/>
+        <lane id=":main_interseccion_10_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="43.61" shape="504.43,681.20 496.13,678.11 486.42,669.97 478.25,660.04 474.59,651.58"/>
+    </edge>
+    <edge id=":main_interseccion_12" function="internal">
+        <lane id=":main_interseccion_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.13" length="17.38" shape="504.43,681.20 499.76,678.57 498.06,675.71 499.32,672.63 503.55,669.34"/>
+    </edge>
+    <edge id=":main_interseccion_13" function="internal">
+        <lane id=":main_interseccion_13_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="43.54" shape="496.53,650.17 499.71,693.59"/>
+        <lane id=":main_interseccion_13_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="43.54" shape="493.34,650.38 496.51,693.80"/>
+        <lane id=":main_interseccion_13_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="43.54" shape="490.14,650.58 493.32,694.01"/>
+    </edge>
+    <edge id=":main_interseccion_16" function="internal">
+        <lane id=":main_interseccion_16_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="61.99" shape="490.14,650.58 484.36,659.95 470.44,673.02 454.77,684.76 443.70,690.14"/>
+        <lane id=":main_interseccion_16_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="60.12" shape="490.14,650.58 484.30,659.25 470.30,671.24 454.55,682.00 443.44,686.96"/>
+    </edge>
+    <edge id=":main_interseccion_18" function="internal">
+        <lane id=":main_interseccion_18_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.92" length="22.75" shape="490.14,650.58 486.63,656.66 482.86,658.85 478.85,657.16 474.59,651.58"/>
+    </edge>
+    <edge id=":main_interseccion_19" function="internal">
+        <lane id=":main_interseccion_19_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="32.32" shape="441.71,665.42 453.57,663.77 461.94,660.98 466.82,657.05 468.21,651.98"/>
+    </edge>
+    <edge id=":main_interseccion_20" function="internal">
+        <lane id=":main_interseccion_20_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="61.42" shape="441.71,665.42 503.08,662.96"/>
+    </edge>
+    <edge id=":main_interseccion_21" function="internal">
+        <lane id=":main_interseccion_21_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="37.27" shape="441.97,668.61 455.19,666.66 464.50,663.20 469.91,658.24 471.40,651.78"/>
+    </edge>
+    <edge id=":main_interseccion_22" function="internal">
+        <lane id=":main_interseccion_22_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="61.40" shape="441.97,668.61 503.31,666.15"/>
+    </edge>
+    <edge id=":main_interseccion_23" function="internal">
+        <lane id=":main_interseccion_23_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="60.88" shape="441.97,668.61 454.16,671.34 472.39,678.50 489.04,687.02 496.51,693.80"/>
+    </edge>
+    <edge id=":main_interseccion_24" function="internal">
+        <lane id=":main_interseccion_24_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="61.38" shape="442.22,671.80 503.55,669.34"/>
+    </edge>
+    <edge id=":main_interseccion_25" function="internal">
+        <lane id=":main_interseccion_25_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="62.10" shape="442.22,671.80 454.89,674.11 474.14,680.30 491.80,687.69 499.71,693.59"/>
+        <lane id=":main_interseccion_25_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="59.29" shape="442.22,671.80 454.39,674.11 472.53,680.30 489.10,687.75 496.51,693.80"/>
+        <lane id=":main_interseccion_25_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="11.11" length="56.52" shape="442.22,671.80 453.88,674.10 470.93,680.30 486.40,687.81 493.32,694.01"/>
+    </edge>
+    <edge id=":main_interseccion_28" function="internal">
+        <lane id=":main_interseccion_28_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.84" length="22.20" shape="442.22,671.80 448.21,675.13 450.41,678.77 448.82,682.71 443.44,686.96"/>
+    </edge>
+
+    <edge id="E0" from="5481745912" to="356854809-AddedOffRampNode" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center">
+        <lane id="E0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="384.27" shape="1013.64,651.84 630.26,678.08">
+            <param key="origId" value="356854809"/>
+        </lane>
+        <lane id="E0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="384.27" shape="1013.42,648.65 630.04,674.89">
+            <param key="origId" value="356854809"/>
+        </lane>
+        <lane id="E0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="384.27" shape="1013.20,645.46 629.83,671.69">
+            <param key="origId" value="356854809"/>
+        </lane>
+    </edge>
+    <edge id="E1" from="356854809-AddedOffRampNode" to="3622576381" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="626.17,676.76 614.98,677.60 593.80,679.36 526.46,684.32">
+        <lane id="E1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="93.45" shape="622.54,681.85 615.36,682.39 594.18,684.15 529.35,688.92">
+            <param key="origId" value="356854809"/>
+        </lane>
+        <lane id="E1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="93.45" shape="622.30,678.65 615.11,679.20 593.93,680.96 529.11,685.73">
+            <param key="origId" value="356854809"/>
+        </lane>
+        <lane id="E1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="93.45" shape="622.06,675.46 614.85,676.00 593.67,677.76 528.88,682.54">
+            <param key="origId" value="356854809"/>
+        </lane>
+        <lane id="E1_3" index="3" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="93.45" shape="621.82,672.27 614.60,672.81 593.42,674.57 528.64,679.35">
+            <param key="origId" value="356854809"/>
+        </lane>
+    </edge>
+    <edge id="E2" from="3622576381" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="526.34,682.73 501.87,684.61 495.92,685.03">
+        <lane id="E2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="526.28,685.94 504.90,687.59">
+            <param key="origId" value="570129394"/>
+        </lane>
+        <lane id="E2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="525.87,682.77 504.66,684.40">
+            <param key="origId" value="570129394"/>
+        </lane>
+        <lane id="E2_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="525.47,679.59 504.43,681.20">
+            <param key="origId" value="570129394"/>
+        </lane>
+        <param key="origTo" value="2164402551"/>
+    </edge>
+    <edge id="EA0" from="main_interseccion" to="5952748235" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="443.57,688.55 360.45,695.24 308.33,698.77 303.60,699.10 225.57,704.39 71.02,716.84 0.00,724.87">
+        <lane id="EA0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="445.10" shape="443.70,690.14 360.57,696.84 308.44,700.37 303.71,700.70 225.69,705.99 71.17,718.43 0.18,726.46">
+            <param key="origId" value="356393276"/>
+        </lane>
+        <lane id="EA0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="445.10" shape="443.44,686.96 360.33,693.64 308.22,697.17 303.49,697.50 225.45,702.79 70.87,715.25 -0.18,723.28">
+            <param key="origId" value="356393276"/>
+        </lane>
+        <param key="origFrom" value="3622576353"/>
+    </edge>
+    <edge id="N0" from="2680622887" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="513.65,1187.98 512.46,1180.71 507.84,1149.89 506.16,1126.24 501.51,1060.71 493.35,945.09 483.73,820.20 477.94,745.05 476.64,729.33 475.85,719.50">
+        <lane id="N0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="510.49,1188.50 509.30,1181.21 504.66,1150.24 502.97,1126.47 498.32,1060.94 490.16,945.33 480.54,820.45 474.75,745.30 473.45,729.59 470.71,695.53">
+            <param key="origId" value="570129387"/>
+        </lane>
+        <lane id="N0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="513.65,1187.98 512.46,1180.71 507.84,1149.89 506.16,1126.24 501.51,1060.71 493.35,945.09 483.73,820.20 477.94,745.05 476.64,729.33 473.91,695.32">
+            <param key="origId" value="570129387"/>
+        </lane>
+        <lane id="N0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="516.81,1187.46 515.62,1180.21 511.02,1149.54 509.35,1126.01 504.70,1060.48 496.54,944.85 486.92,819.95 481.13,744.80 479.83,729.07 477.10,695.10">
+            <param key="origId" value="570129387"/>
+        </lane>
+        <param key="origTo" value="3622576413"/>
+    </edge>
+    <edge id="NA0" from="main_interseccion" to="2172154306" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="471.40,651.78 429.90,2.29">
+        <lane id="NA0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="650.81" shape="468.21,651.98 426.71,2.49">
+            <param key="origId" value="570129379"/>
+        </lane>
+        <lane id="NA0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="650.81" shape="471.40,651.78 429.90,2.29">
+            <param key="origId" value="570129379"/>
+        </lane>
+        <lane id="NA0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="650.81" shape="474.59,651.58 433.09,2.09">
+            <param key="origId" value="570129379"/>
+        </lane>
+        <param key="origFrom" value="3622576419"/>
+    </edge>
+    <edge id="S0" from="4640174026" to="J4" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="457.36,0.00 490.01,602.91">
+        <lane id="S0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="603.79" shape="460.56,-0.17 493.21,602.74">
+            <param key="origId" value="408747258"/>
+        </lane>
+        <lane id="S0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="603.79" shape="457.36,0.00 490.01,602.91">
+            <param key="origId" value="408747258"/>
+        </lane>
+        <lane id="S0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="603.79" shape="454.16,0.17 486.81,603.08">
+            <param key="origId" value="408747258"/>
+        </lane>
+    </edge>
+    <edge id="S1" from="J4" to="J2" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="489.95,602.91 491.94,629.97">
+        <lane id="S1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.04" shape="494.90,626.55 495.12,629.59">
+            <param key="origId" value="408747258"/>
+        </lane>
+        <lane id="S1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.04" shape="491.71,626.79 491.93,629.82">
+            <param key="origId" value="408747258"/>
+        </lane>
+        <lane id="S1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.04" shape="488.51,627.02 488.74,630.06">
+            <param key="origId" value="408747258"/>
+        </lane>
+    </edge>
+    <edge id="S2" from="J2" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="491.94,629.97 493.35,650.58">
+        <lane id="S2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="495.14,629.90 496.53,650.17">
+            <param key="origId" value="571505150 921430816"/>
+        </lane>
+        <lane id="S2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="491.95,630.12 493.34,650.38">
+            <param key="origId" value="571505150 921430816"/>
+        </lane>
+        <lane id="S2_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="488.76,630.34 490.14,650.58">
+            <param key="origId" value="571505150 921430816"/>
+        </lane>
+        <param key="origTo" value="2164664304"/>
+    </edge>
+    <edge id="SA0" from="main_interseccion" to="3622576454" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="495.92,685.03 496.37,691.74 498.15,717.26">
+        <lane id="SA0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="22.03" shape="499.71,693.59 501.24,715.56">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="22.03" shape="496.51,693.80 498.05,715.78">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="22.03" shape="493.32,694.01 494.85,716.00">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <param key="origFrom" value="2164402551"/>
+    </edge>
+    <edge id="SA1" from="3622576454" to="572479039#2-AddedOnRampNode" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="499.75,717.15 506.70,816.91">
+        <lane id="SA1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="94.46" acceleration="1" shape="504.65,718.39 511.21,812.62">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="94.46" shape="501.46,718.62 508.02,812.84">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="94.46" shape="498.26,718.84 504.83,813.07">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA1_3" index="3" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="94.46" shape="495.07,719.06 501.64,813.29">
+            <param key="origId" value="572479039"/>
+        </lane>
+    </edge>
+    <edge id="SA2" from="572479039#2-AddedOnRampNode" to="1236859340" name="Calle 13" priority="11" type="highway.secondary" spreadType="center">
+        <lane id="SA2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="341.45" shape="508.71,820.65 545.23,1160.14">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="341.45" shape="505.53,820.99 542.05,1160.48">
+            <param key="origId" value="572479039"/>
+        </lane>
+        <lane id="SA2_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="341.45" shape="502.35,821.33 538.87,1160.82">
+            <param key="origId" value="572479039"/>
+        </lane>
+    </edge>
+    <edge id="W0" from="4106739106" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="1.95,703.63 442.15,668.60">
+        <lane id="W0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="1.70,700.44 441.71,665.42">
+            <param key="origId" value="570129391"/>
+        </lane>
+        <lane id="W0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="1.95,703.63 441.97,668.61">
+            <param key="origId" value="570129391"/>
+        </lane>
+        <lane id="W0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="2.20,706.82 442.22,671.80">
+            <param key="origId" value="570129391"/>
+        </lane>
+        <param key="origTo" value="3622576408"/>
+    </edge>
+    <edge id="WA0" from="main_interseccion" to="J1" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="502.73,666.19 515.02,665.28 549.76,663.84">
+        <lane id="WA0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="20.51" shape="503.08,662.96 514.84,662.08 523.65,661.72">
+            <param key="origId" value="572479049"/>
+        </lane>
+        <lane id="WA0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="20.51" shape="503.31,666.15 515.02,665.28 523.78,664.92">
+            <param key="origId" value="572479049"/>
+        </lane>
+        <lane id="WA0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="20.51" shape="503.55,669.34 515.20,668.48 523.91,668.11">
+            <param key="origId" value="572479049"/>
+        </lane>
+        <param key="origFrom" value="2164664304"/>
+    </edge>
+    <edge id="WA1" from="J1" to="570129388-AddedOnRampNode" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="549.71,663.89 630.76,657.29">
+        <lane id="WA1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="77.32" acceleration="1" shape="549.32,659.11 626.38,652.83">
+            <param key="origId" value="570129388"/>
+        </lane>
+        <lane id="WA1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="77.32" shape="549.58,662.30 626.64,656.02">
+            <param key="origId" value="570129388"/>
+        </lane>
+        <lane id="WA1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="77.32" shape="549.84,665.48 626.90,659.21">
+            <param key="origId" value="570129388"/>
+        </lane>
+        <lane id="WA1_3" index="3" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="77.32" shape="550.10,668.67 627.16,662.40">
+            <param key="origId" value="570129388"/>
+        </lane>
+    </edge>
+    <edge id="WA2" from="570129388-AddedOnRampNode" to="2991313001" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="630.89,658.88 714.23,652.13 855.36,642.88 1011.62,633.53">
+        <lane id="WA2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="377.59" shape="634.62,655.37 714.00,648.94 855.16,639.69 1011.43,630.34">
+            <param key="origId" value="570129388"/>
+        </lane>
+        <lane id="WA2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="377.59" shape="634.88,658.56 714.23,652.13 855.36,642.88 1011.62,633.53">
+            <param key="origId" value="570129388"/>
+        </lane>
+        <lane id="WA2_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="377.59" shape="635.13,661.75 714.46,655.32 855.56,646.07 1011.81,636.72">
+            <param key="origId" value="570129388"/>
+        </lane>
+    </edge>
+    <edge id="salida_5" from="3622576381" to="3622576454" priority="6" type="highway.secondary_link" spreadType="center" shape="529.27,689.31 521.28,690.34 515.35,691.88 510.33,694.90 506.34,699.68 504.57,706.12 504.54,716.82">
+        <lane id="salida_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="22.22" length="39.57" shape="526.76,689.63 521.28,690.34 515.35,691.88 510.33,694.90 506.34,699.68 504.57,706.12 504.54,715.28">
+            <param key="origId" value="356857390"/>
+        </lane>
+    </edge>
+    <edge id="salida_80" from="J4" to="J1" priority="6" type="highway.secondary_link" spreadType="center" shape="489.95,602.91 504.28,638.00 508.21,646.54 514.63,654.34 525.20,658.46 536.45,658.57 549.76,663.84">
+        <lane id="salida_80_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="22.22" length="43.29" shape="499.19,625.54 504.28,638.00 508.21,646.54 514.63,654.34 524.26,658.09">
+            <param key="origId" value="356857396"/>
+        </lane>
+    </edge>
+
+    <tlLogic id="semaforos" type="actuated" programID="0" offset="0">
+        <phase duration="40" state="GGrrr" minDur="10" maxDur="90"/>
+        <phase duration="3"  state="yyyrr"/>
+        <phase duration="30" state="rrGrr" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="ryyyr"/>
+        <phase duration="30" state="rrrGr" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="rrryy"/>
+        <phase duration="30" state="rrrrG" minDur="5" maxDur="90"/>
+        <phase duration="3"  state="yrrry"/>
+        <param key="E2_0" value="E1Sensor_E2_0"/>
+        <param key="E2_1" value="E1Sensor_E2_1"/>
+        <param key="E2_2" value="E1Sensor_E2_2"/>
+        <param key="N0_0" value="E1Sensor_N0_0"/>
+        <param key="N0_1" value="E1Sensor_N0_1"/>
+        <param key="N0_2" value="E1Sensor_N0_2"/>
+        <param key="S2_0" value="E1Sensor_S2_0"/>
+        <param key="S2_1" value="E1Sensor_S2_1"/>
+        <param key="S2_2" value="E1Sensor_S2_2"/>
+        <param key="W0_0" value="E1Sensor_W0_0"/>
+        <param key="W0_1" value="E1Sensor_W0_1"/>
+        <param key="W0_2" value="E1Sensor_W0_2"/>
+    </tlLogic>
+
+    <junction id="1236859340" type="dead_end" x="542.05" y="1160.48" incLanes="SA2_0 SA2_1 SA2_2" intLanes="" shape="546.82,1159.97 537.28,1160.99"/>
+    <junction id="2172154306" type="dead_end" x="429.90" y="2.29" incLanes="NA0_0 NA0_1 NA0_2" intLanes="" shape="425.11,2.60 434.69,1.98"/>
+    <junction id="2680622887" type="dead_end" x="513.65" y="1187.98" incLanes="" intLanes="" shape="518.39,1187.20 508.91,1188.76"/>
+    <junction id="2991313001" type="dead_end" x="1011.62" y="633.53" incLanes="WA2_0 WA2_1 WA2_2" intLanes="" shape="1011.33,628.74 1011.91,638.32"/>
+    <junction id="356854809-AddedOffRampNode" type="priority" x="626.05" y="675.16" incLanes="E0_0 E0_1 E0_2" intLanes=":356854809-AddedOffRampNode_0_0 :356854809-AddedOffRampNode_0_1 :356854809-AddedOffRampNode_0_2 :356854809-AddedOffRampNode_0_3" shape="630.37,679.68 629.72,670.10 621.70,670.68 622.66,683.44 625.61,682.39 627.42,680.71 628.61,680.03">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="3622576381" type="priority" x="526.34" y="682.73" incLanes="E1_0 E1_1 E1_2 E1_3" intLanes=":3622576381_0_0 :3622576381_1_0 :3622576381_1_1 :3622576381_1_2" shape="529.47,690.52 528.53,677.75 525.26,678.00 526.96,691.22 527.90,690.99 528.21,690.84 528.53,690.70 528.92,690.59">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="3622576454" type="priority" x="498.15" y="717.26" incLanes="salida_5_0 SA0_0 SA0_1 SA0_2" intLanes=":3622576454_0_0 :3622576454_1_0 :3622576454_1_1 :3622576454_1_2" shape="493.48,719.17 506.24,718.28 506.14,715.29 502.94,715.28 502.84,715.45 493.26,716.12">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="4106739106" type="dead_end" x="1.95" y="703.63" incLanes="" intLanes="" shape="2.33,708.41 1.57,698.85"/>
+    <junction id="4640174026" type="dead_end" x="457.36" y="0.00" incLanes="" intLanes="" shape="452.57,0.26 462.15,-0.26"/>
+    <junction id="5481745912" type="dead_end" x="1013.42" y="648.65" incLanes="" intLanes="" shape="1013.09,643.86 1013.75,653.44"/>
+    <junction id="570129388-AddedOnRampNode" type="priority" x="630.89" y="658.88" incLanes="WA1_0 WA1_1 WA1_2 WA1_3" intLanes=":570129388-AddedOnRampNode_0_0 :570129388-AddedOnRampNode_0_1 :570129388-AddedOnRampNode_0_2" shape="635.26,663.34 634.49,653.77 631.40,653.19 629.34,651.82 628.06,651.33 626.25,651.24 627.29,663.99">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="000" foes="000" cont="0"/>
+    </junction>
+    <junction id="572479039#2-AddedOnRampNode" type="priority" x="505.10" y="817.02" incLanes="SA1_0 SA1_1 SA1_2 SA1_3" intLanes=":572479039#2-AddedOnRampNode_0_0 :572479039#2-AddedOnRampNode_0_1 :572479039#2-AddedOnRampNode_0_2" shape="500.75,821.51 510.30,820.48 510.82,817.49 511.50,816.50 512.19,815.50 512.69,814.26 512.81,812.51 500.04,813.40">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="000" foes="000" cont="0"/>
+    </junction>
+    <junction id="5952748235" type="dead_end" x="0.00" y="724.87" incLanes="EA0_0 EA0_1" intLanes="" shape="0.36,728.05 -0.36,721.69"/>
+    <junction id="J1" type="priority" x="549.76" y="663.84" incLanes="salida_80_0 WA0_0 WA0_1 WA0_2" intLanes=":J1_0_0 :J1_1_0 :J1_1_1 :J1_1_2" shape="550.23,670.27 549.19,657.51 543.96,658.09 540.01,658.70 536.72,659.09 533.50,659.03 529.75,658.28 524.85,656.61 523.67,659.58 523.58,660.12 523.98,669.71">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="J2" type="priority" x="491.94" y="629.97" incLanes="S1_0 S1_1 S1_2" intLanes=":J2_0_0 :J2_0_1 :J2_0_2" shape="487.16,630.45 496.74,629.79 496.72,629.47 487.14,630.17">
+        <request index="0" response="000" foes="000" cont="0"/>
+        <request index="1" response="000" foes="000" cont="0"/>
+        <request index="2" response="000" foes="000" cont="0"/>
+    </junction>
+    <junction id="J4" type="priority" x="489.65" y="603.57" incLanes="S0_0 S0_1 S0_2" intLanes=":J4_0_0 :J4_1_0 :J4_1_1 :J4_1_2" shape="486.92,627.14 496.49,626.43 497.71,626.15 500.67,624.94 498.77,620.38 497.35,616.98 496.34,614.11 495.63,611.17 495.15,607.56 494.80,602.65 485.22,603.17">
+        <request index="0" response="0000" foes="0000" cont="0"/>
+        <request index="1" response="0000" foes="0000" cont="0"/>
+        <request index="2" response="0000" foes="0000" cont="0"/>
+        <request index="3" response="0000" foes="0000" cont="0"/>
+    </junction>
+    <junction id="main_interseccion" type="traffic_light" x="470.93" y="677.03" incLanes="N0_0 N0_1 N0_2 E2_0 E2_1 E2_2 S2_0 S2_1 S2_2 W0_0 W0_1 W0_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_7_2 :main_interseccion_10_0 :main_interseccion_10_1 :main_interseccion_12_0 :main_interseccion_13_0 :main_interseccion_13_1 :main_interseccion_13_2 :main_interseccion_16_0 :main_interseccion_16_1 :main_interseccion_18_0 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_25_1 :main_interseccion_25_2 :main_interseccion_28_0" shape="469.12,695.64 501.30,693.48 501.59,691.23 502.09,690.41 502.83,689.80 503.81,689.39 505.02,689.18 502.96,661.36 500.63,660.24 499.73,658.69 499.02,656.48 498.48,653.60 498.13,650.07 466.61,652.09 466.09,655.11 464.10,657.70 460.66,659.87 455.76,661.62 449.40,662.94 441.58,663.83 443.83,691.74 451.42,691.29 457.67,691.29 462.56,691.72 466.10,692.58 468.28,693.89">
+        <request index="0"  response="00000000000000000000000000000" foes="00000000000110000001110000000" cont="0"/>
+        <request index="1"  response="00000000000000000000000000000" foes="01111111111110000111110000000" cont="0"/>
+        <request index="2"  response="00000000000000000000000000000" foes="01111111111110000111110000000" cont="0"/>
+        <request index="3"  response="00000000000000000000000000000" foes="01111111111110000111110000000" cont="0"/>
+        <request index="4"  response="00000000000001110000000000000" foes="01111110100001111111110000000" cont="0"/>
+        <request index="5"  response="00000000000001110000000000000" foes="01111110100001111111110000000" cont="0"/>
+        <request index="6"  response="01110100000001110000000000000" foes="01110100000001110000000000000" cont="0"/>
+        <request index="7"  response="00000000000111110000000111111" foes="11110100000111110000000111111" cont="0"/>
+        <request index="8"  response="00000000000111110001000111111" foes="11110100000111110001000111111" cont="0"/>
+        <request index="9"  response="00000000000111110000000111111" foes="11110100000111110000100111111" cont="0"/>
+        <request index="10" response="00001011110111110000000111110" foes="00001011111111110000000111110" cont="0"/>
+        <request index="11" response="00001011110111110000000111110" foes="00001011111111110000000111110" cont="0"/>
+        <request index="12" response="00001010100000000000000110000" foes="00001010100000000000000110000" cont="0"/>
+        <request index="13" response="00000000000000000000000000000" foes="01111110100000000111111110000" cont="0"/>
+        <request index="14" response="00000000000000000000000000000" foes="01111110100000000111111110000" cont="0"/>
+        <request index="15" response="00000000000000000000000000000" foes="01111110100000000111111110000" cont="0"/>
+        <request index="16" response="00000000000000000000000001111" foes="11111110100000000111110001111" cont="0"/>
+        <request index="17" response="00000000000000000000000001111" foes="11111110100000000111110001111" cont="0"/>
+        <request index="18" response="00000000000000000110000001110" foes="00000000000000000110000001110" cont="0"/>
+        <request index="19" response="00000000000000000000000001110" foes="00000000000000000110000001110" cont="0"/>
+        <request index="20" response="00000000000111110000000111110" foes="00000001000111111110000111110" cont="0"/>
+        <request index="21" response="00000000100000000000000001110" foes="00000000100000000110000001110" cont="0"/>
+        <request index="22" response="00000000000111110000000111110" foes="00000000000111111110000111110" cont="0"/>
+        <request index="23" response="00101000000111110001110111110" foes="00101000000111110001111111110" cont="0"/>
+        <request index="24" response="00000000000111110000000111110" foes="00000100000111111110000111110" cont="0"/>
+        <request index="25" response="00000000000111110001110111110" foes="00000000000111110001111111110" cont="0"/>
+        <request index="26" response="00000000000111110001110111110" foes="00000100000111110001111111110" cont="0"/>
+        <request index="27" response="00000000000111110001110111110" foes="00000000000111110001111111110" cont="0"/>
+        <request index="28" response="00000000000110000001110000000" foes="00000000000110000001110000000" cont="0"/>
+        <param key="origEdgeIds" value="356857393 356857395 570129380 570129389 570129390#0 570129390#1 570129392#0 570129392#1 571505148 571505149#0 571505149#1 572479050 572479051 921430815"/>
+        <param key="origId" value="2164402551 2164402561 2164664296 2164664304 3622576353 3622576408 3622576413 3622576419 5499886049 5499886050 5499886054 5499886059"/>
+    </junction>
+
+    <connection from="E0" to="E1" fromLane="0" toLane="0" via=":356854809-AddedOffRampNode_0_0" dir="s" state="M"/>
+    <connection from="E0" to="E1" fromLane="0" toLane="1" via=":356854809-AddedOffRampNode_0_1" dir="s" state="M"/>
+    <connection from="E0" to="E1" fromLane="1" toLane="2" via=":356854809-AddedOffRampNode_0_2" dir="s" state="M"/>
+    <connection from="E0" to="E1" fromLane="2" toLane="3" via=":356854809-AddedOffRampNode_0_3" dir="s" state="M"/>
+    <connection from="E1" to="salida_5" fromLane="0" toLane="0" via=":3622576381_0_0" dir="s" state="M"/>
+    <connection from="E1" to="E2" fromLane="1" toLane="0" via=":3622576381_1_0" dir="s" state="M"/>
+    <connection from="E1" to="E2" fromLane="2" toLane="1" via=":3622576381_1_1" dir="s" state="M"/>
+    <connection from="E1" to="E2" fromLane="3" toLane="2" via=":3622576381_1_2" dir="s" state="M"/>
+    <connection from="E2" to="EA0" fromLane="0" toLane="0" via=":main_interseccion_7_0" tl="semaforos" linkIndex="2" dir="s" state="o"/>
+    <connection from="E2" to="EA0" fromLane="1" toLane="1" via=":main_interseccion_7_1" tl="semaforos" linkIndex="2" dir="s" state="o"/>
+    <connection from="E2" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_7_2" tl="semaforos" linkIndex="2" dir="s" state="o"/>
+    <connection from="E2" to="NA0" fromLane="2" toLane="1" via=":main_interseccion_10_0" tl="semaforos" linkIndex="2" dir="l" state="o"/>
+    <connection from="E2" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_10_1" tl="semaforos" linkIndex="2" dir="l" state="o"/>
+    <connection from="E2" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_12_0" tl="semaforos" linkIndex="2" dir="t" state="o"/>
+    <connection from="N0" to="EA0" fromLane="0" toLane="0" via=":main_interseccion_0_0" tl="semaforos" linkIndex="0" dir="r" state="O"/>
+    <connection from="N0" to="NA0" fromLane="0" toLane="0" via=":main_interseccion_1_0" tl="semaforos" linkIndex="0" dir="s" state="O"/>
+    <connection from="N0" to="NA0" fromLane="1" toLane="1" via=":main_interseccion_1_1" tl="semaforos" linkIndex="0" dir="s" state="O"/>
+    <connection from="N0" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_1_2" tl="semaforos" linkIndex="0" dir="s" state="O"/>
+    <connection from="N0" to="WA0" fromLane="2" toLane="1" via=":main_interseccion_4_0" tl="semaforos" linkIndex="0" dir="l" state="o"/>
+    <connection from="N0" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_4_1" tl="semaforos" linkIndex="0" dir="l" state="o"/>
+    <connection from="N0" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_6_0" tl="semaforos" linkIndex="1" dir="t" state="o"/>
+    <connection from="S0" to="salida_80" fromLane="0" toLane="0" via=":J4_0_0" dir="R" state="M"/>
+    <connection from="S0" to="S1" fromLane="0" toLane="0" via=":J4_1_0" dir="s" state="M"/>
+    <connection from="S0" to="S1" fromLane="1" toLane="1" via=":J4_1_1" dir="s" state="M"/>
+    <connection from="S0" to="S1" fromLane="2" toLane="2" via=":J4_1_2" dir="s" state="M"/>
+    <connection from="S1" to="S2" fromLane="0" toLane="0" via=":J2_0_0" dir="s" state="M"/>
+    <connection from="S1" to="S2" fromLane="1" toLane="1" via=":J2_0_1" dir="s" state="M"/>
+    <connection from="S1" to="S2" fromLane="2" toLane="2" via=":J2_0_2" dir="s" state="M"/>
+    <connection from="S2" to="SA0" fromLane="0" toLane="0" via=":main_interseccion_13_0" tl="semaforos" linkIndex="3" dir="s" state="O"/>
+    <connection from="S2" to="SA0" fromLane="1" toLane="1" via=":main_interseccion_13_1" tl="semaforos" linkIndex="3" dir="s" state="O"/>
+    <connection from="S2" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_13_2" tl="semaforos" linkIndex="3" dir="s" state="O"/>
+    <connection from="S2" to="EA0" fromLane="2" toLane="0" via=":main_interseccion_16_0" tl="semaforos" linkIndex="3" dir="l" state="o"/>
+    <connection from="S2" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_16_1" tl="semaforos" linkIndex="3" dir="l" state="o"/>
+    <connection from="S2" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_18_0" tl="semaforos" linkIndex="3" dir="t" state="o"/>
+    <connection from="SA0" to="SA1" fromLane="0" toLane="1" via=":3622576454_1_0" dir="s" state="M"/>
+    <connection from="SA0" to="SA1" fromLane="1" toLane="2" via=":3622576454_1_1" dir="s" state="M"/>
+    <connection from="SA0" to="SA1" fromLane="2" toLane="3" via=":3622576454_1_2" dir="s" state="M"/>
+    <connection from="SA1" to="SA2" fromLane="1" toLane="0" via=":572479039#2-AddedOnRampNode_0_0" dir="s" state="M"/>
+    <connection from="SA1" to="SA2" fromLane="2" toLane="1" via=":572479039#2-AddedOnRampNode_0_1" dir="s" state="M"/>
+    <connection from="SA1" to="SA2" fromLane="3" toLane="2" via=":572479039#2-AddedOnRampNode_0_2" dir="s" state="M"/>
+    <connection from="W0" to="NA0" fromLane="0" toLane="0" via=":main_interseccion_19_0" tl="semaforos" linkIndex="4" dir="r" state="o"/>
+    <connection from="W0" to="WA0" fromLane="0" toLane="0" via=":main_interseccion_20_0" tl="semaforos" linkIndex="4" dir="s" state="o"/>
+    <connection from="W0" to="NA0" fromLane="1" toLane="1" via=":main_interseccion_21_0" tl="semaforos" linkIndex="4" dir="r" state="o"/>
+    <connection from="W0" to="WA0" fromLane="1" toLane="1" via=":main_interseccion_22_0" tl="semaforos" linkIndex="4" dir="s" state="o"/>
+    <connection from="W0" to="SA0" fromLane="1" toLane="1" via=":main_interseccion_23_0" tl="semaforos" linkIndex="4" dir="l" state="o"/>
+    <connection from="W0" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_24_0" tl="semaforos" linkIndex="4" dir="s" state="o"/>
+    <connection from="W0" to="SA0" fromLane="2" toLane="0" via=":main_interseccion_25_0" tl="semaforos" linkIndex="4" dir="l" state="o"/>
+    <connection from="W0" to="SA0" fromLane="2" toLane="1" via=":main_interseccion_25_1" tl="semaforos" linkIndex="4" dir="l" state="o"/>
+    <connection from="W0" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_25_2" tl="semaforos" linkIndex="4" dir="l" state="o"/>
+    <connection from="W0" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_28_0" tl="semaforos" linkIndex="4" dir="t" state="o"/>
+    <connection from="WA0" to="WA1" fromLane="0" toLane="1" via=":J1_1_0" dir="s" state="M"/>
+    <connection from="WA0" to="WA1" fromLane="1" toLane="2" via=":J1_1_1" dir="s" state="M"/>
+    <connection from="WA0" to="WA1" fromLane="2" toLane="3" via=":J1_1_2" dir="s" state="M"/>
+    <connection from="WA1" to="WA2" fromLane="1" toLane="0" via=":570129388-AddedOnRampNode_0_0" dir="s" state="M"/>
+    <connection from="WA1" to="WA2" fromLane="2" toLane="1" via=":570129388-AddedOnRampNode_0_1" dir="s" state="M"/>
+    <connection from="WA1" to="WA2" fromLane="3" toLane="2" via=":570129388-AddedOnRampNode_0_2" dir="s" state="M"/>
+    <connection from="salida_5" to="SA1" fromLane="0" toLane="0" via=":3622576454_0_0" dir="s" state="M"/>
+    <connection from="salida_80" to="WA1" fromLane="0" toLane="0" via=":J1_0_0" dir="s" state="M"/>
+
+    <connection from=":356854809-AddedOffRampNode_0" to="E1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":356854809-AddedOffRampNode_0" to="E1" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":356854809-AddedOffRampNode_0" to="E1" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":356854809-AddedOffRampNode_0" to="E1" fromLane="3" toLane="3" dir="s" state="M"/>
+    <connection from=":3622576381_0" to="salida_5" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":3622576381_1" to="E2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":3622576381_1" to="E2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":3622576381_1" to="E2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":3622576454_0" to="SA1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":3622576454_1" to="SA1" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":3622576454_1" to="SA1" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":3622576454_1" to="SA1" fromLane="2" toLane="3" dir="s" state="M"/>
+    <connection from=":570129388-AddedOnRampNode_0" to="WA2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":570129388-AddedOnRampNode_0" to="WA2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":570129388-AddedOnRampNode_0" to="WA2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":572479039#2-AddedOnRampNode_0" to="SA2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":572479039#2-AddedOnRampNode_0" to="SA2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":572479039#2-AddedOnRampNode_0" to="SA2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":J1_0" to="WA1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J1_1" to="WA1" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":J1_1" to="WA1" fromLane="1" toLane="2" dir="s" state="M"/>
+    <connection from=":J1_1" to="WA1" fromLane="2" toLane="3" dir="s" state="M"/>
+    <connection from=":J2_0" to="S2" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J2_0" to="S2" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":J2_0" to="S2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":J4_0" to="salida_80" fromLane="0" toLane="0" dir="R" state="M"/>
+    <connection from=":J4_1" to="S1" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J4_1" to="S1" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":J4_1" to="S1" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":main_interseccion_0" to="EA0" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":main_interseccion_1" to="NA0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":main_interseccion_1" to="NA0" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":main_interseccion_1" to="NA0" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":main_interseccion_4" to="WA0" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":main_interseccion_4" to="WA0" fromLane="1" toLane="2" dir="l" state="M"/>
+    <connection from=":main_interseccion_6" to="SA0" fromLane="0" toLane="2" dir="t" state="M"/>
+    <connection from=":main_interseccion_7" to="EA0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":main_interseccion_7" to="EA0" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":main_interseccion_7" to="EA0" fromLane="2" toLane="1" dir="s" state="M"/>
+    <connection from=":main_interseccion_10" to="NA0" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":main_interseccion_10" to="NA0" fromLane="1" toLane="2" dir="l" state="M"/>
+    <connection from=":main_interseccion_12" to="WA0" fromLane="0" toLane="2" dir="t" state="M"/>
+    <connection from=":main_interseccion_13" to="SA0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":main_interseccion_13" to="SA0" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":main_interseccion_13" to="SA0" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":main_interseccion_16" to="EA0" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":main_interseccion_16" to="EA0" fromLane="1" toLane="1" dir="l" state="M"/>
+    <connection from=":main_interseccion_18" to="NA0" fromLane="0" toLane="2" dir="t" state="M"/>
+    <connection from=":main_interseccion_19" to="NA0" fromLane="0" toLane="0" dir="r" state="M"/>
+    <connection from=":main_interseccion_20" to="WA0" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":main_interseccion_21" to="NA0" fromLane="0" toLane="1" dir="r" state="M"/>
+    <connection from=":main_interseccion_22" to="WA0" fromLane="0" toLane="1" dir="s" state="M"/>
+    <connection from=":main_interseccion_23" to="SA0" fromLane="0" toLane="1" dir="l" state="M"/>
+    <connection from=":main_interseccion_24" to="WA0" fromLane="0" toLane="2" dir="s" state="M"/>
+    <connection from=":main_interseccion_25" to="SA0" fromLane="0" toLane="0" dir="l" state="M"/>
+    <connection from=":main_interseccion_25" to="SA0" fromLane="1" toLane="1" dir="l" state="M"/>
+    <connection from=":main_interseccion_25" to="SA0" fromLane="2" toLane="2" dir="l" state="M"/>
+    <connection from=":main_interseccion_28" to="EA0" fromLane="0" toLane="1" dir="t" state="M"/>
+
+</net>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-08-10 19:02:18 by Eclipse SUMO netedit Version 1.19.0
+<!-- generated on 2024-08-10 19:40:29 by Eclipse SUMO netedit Version 1.19.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
@@ -47,30 +47,6 @@
     <type id="highway.secondary" priority="11" numLanes="1" speed="27.78" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
     <type id="highway.secondary_link" priority="6" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
     <type id="highway.tertiary" priority="10" numLanes="1" speed="22.22" disallow="tram rail_urban rail rail_electric rail_fast ship" oneway="0"/>
-
-
-    <tlLogic id="semaforos" type="actuated" programID="0" offset="0">
-        <phase duration="38" state="GGGGgggrrrrrrrGGGgggrrrrrrrrrr" minDur="10" maxDur="50"/>
-        <phase duration="3"  state="yyyyyyyrrrrrrryyyyyyrrrrrrrrrr"/>
-        <phase duration="3"  state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="38" state="rrrrrrrGggGgggrrrrrrGGgGgGgggg" minDur="10" maxDur="50"/>
-        <phase duration="3"  state="rrrrrrryyyyyyyrrrrrryyyyyyyyyy"/>
-        <phase duration="5"  state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
-        <param key="E2_0" value="Ind_E0_0"/>
-        <param key="E2_1" value="Ind_E0_1"/>
-        <param key="E2_2" value="Ind_E0_2"/>
-        <param key="N0_0" value="Ind_N0_0"/>
-        <param key="N0_1" value="Ind_N0_1"/>
-        <param key="N0_2" value="Ind_N0_2"/>
-        <param key="S2_0" value="Ind_S2_0"/>
-        <param key="S2_1" value="Ind_S2_1"/>
-        <param key="S2_2" value="Ind_S2_2"/>
-        <param key="W0_0" value="Ind_W0_0"/>
-        <param key="W0_1" value="Ind_W0_1"/>
-        <param key="W0_2" value="Ind_W0_2"/>
-    </tlLogic>
-
-
 
     <edge id=":356854809-AddedOffRampNode_0" function="internal">
         <lane id=":356854809-AddedOffRampNode_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="8.20" shape="630.26,678.08 627.85,678.75 626.40,679.95 624.95,681.16 622.54,681.85"/>
@@ -244,6 +220,18 @@
         <lane id=":main_interseccion_45_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="6.84" length="3.41" shape="446.12,684.84 443.44,686.96"/>
     </edge>
 
+    <edge id="E" from="3622576381" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="526.34,682.73 501.87,684.61 495.92,685.03">
+        <lane id="E_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="526.28,685.94 504.90,687.59">
+            <param key="origId" value="570129394"/>
+        </lane>
+        <lane id="E_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="525.87,682.77 504.66,684.40">
+            <param key="origId" value="570129394"/>
+        </lane>
+        <lane id="E_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="525.47,679.59 504.43,681.20">
+            <param key="origId" value="570129394"/>
+        </lane>
+        <param key="origTo" value="2164402551"/>
+    </edge>
     <edge id="E0" from="5481745912" to="356854809-AddedOffRampNode" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center">
         <lane id="E0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="384.27" shape="1013.64,651.84 630.26,678.08">
             <param key="origId" value="356854809"/>
@@ -269,18 +257,6 @@
             <param key="origId" value="356854809"/>
         </lane>
     </edge>
-    <edge id="E2" from="3622576381" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="526.34,682.73 501.87,684.61 495.92,685.03">
-        <lane id="E2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="526.28,685.94 504.90,687.59">
-            <param key="origId" value="570129394"/>
-        </lane>
-        <lane id="E2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="525.87,682.77 504.66,684.40">
-            <param key="origId" value="570129394"/>
-        </lane>
-        <lane id="E2_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="21.27" shape="525.47,679.59 504.43,681.20">
-            <param key="origId" value="570129394"/>
-        </lane>
-        <param key="origTo" value="2164402551"/>
-    </edge>
     <edge id="EA0" from="main_interseccion" to="5952748235" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="443.57,688.55 360.45,695.24 308.33,698.77 303.60,699.10 225.57,704.39 71.02,716.84 0.00,724.87">
         <lane id="EA0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="445.10" shape="443.70,690.14 360.57,696.84 308.44,700.37 303.71,700.70 225.69,705.99 71.17,718.43 0.18,726.46">
             <param key="origId" value="356393276"/>
@@ -290,14 +266,14 @@
         </lane>
         <param key="origFrom" value="3622576353"/>
     </edge>
-    <edge id="N0" from="2680622887" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="513.65,1187.98 512.46,1180.71 507.84,1149.89 506.16,1126.24 501.51,1060.71 493.35,945.09 483.73,820.20 477.94,745.05 476.64,729.33 475.85,719.50">
-        <lane id="N0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="510.49,1188.50 509.30,1181.21 504.66,1150.24 502.97,1126.47 498.32,1060.94 490.16,945.33 480.54,820.45 474.75,745.30 473.45,729.59 470.71,695.53">
+    <edge id="N" from="2680622887" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="513.65,1187.98 512.46,1180.71 507.84,1149.89 506.16,1126.24 501.51,1060.71 493.35,945.09 483.73,820.20 477.94,745.05 476.64,729.33 475.85,719.50">
+        <lane id="N_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="510.49,1188.50 509.30,1181.21 504.66,1150.24 502.97,1126.47 498.32,1060.94 490.16,945.33 480.54,820.45 474.75,745.30 473.45,729.59 470.71,695.53">
             <param key="origId" value="570129387"/>
         </lane>
-        <lane id="N0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="513.65,1187.98 512.46,1180.71 507.84,1149.89 506.16,1126.24 501.51,1060.71 493.35,945.09 483.73,820.20 477.94,745.05 476.64,729.33 473.91,695.32">
+        <lane id="N_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="513.65,1187.98 512.46,1180.71 507.84,1149.89 506.16,1126.24 501.51,1060.71 493.35,945.09 483.73,820.20 477.94,745.05 476.64,729.33 473.91,695.32">
             <param key="origId" value="570129387"/>
         </lane>
-        <lane id="N0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="516.81,1187.46 515.62,1180.21 511.02,1149.54 509.35,1126.01 504.70,1060.48 496.54,944.85 486.92,819.95 481.13,744.80 479.83,729.07 477.10,695.10">
+        <lane id="N_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="494.37" shape="516.81,1187.46 515.62,1180.21 511.02,1149.54 509.35,1126.01 504.70,1060.48 496.54,944.85 486.92,819.95 481.13,744.80 479.83,729.07 477.10,695.10">
             <param key="origId" value="570129387"/>
         </lane>
         <param key="origTo" value="3622576413"/>
@@ -313,6 +289,18 @@
             <param key="origId" value="570129379"/>
         </lane>
         <param key="origFrom" value="3622576419"/>
+    </edge>
+    <edge id="S" from="J2" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="491.94,629.97 493.35,650.58">
+        <lane id="S_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="495.14,629.90 496.53,650.17">
+            <param key="origId" value="571505150 921430816"/>
+        </lane>
+        <lane id="S_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="491.95,630.12 493.34,650.38">
+            <param key="origId" value="571505150 921430816"/>
+        </lane>
+        <lane id="S_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="488.76,630.34 490.14,650.58">
+            <param key="origId" value="571505150 921430816"/>
+        </lane>
+        <param key="origTo" value="2164664304"/>
     </edge>
     <edge id="S0" from="4640174026" to="J4" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="457.36,0.00 490.01,602.91">
         <lane id="S0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="603.79" shape="460.56,-0.17 493.21,602.74">
@@ -335,18 +323,6 @@
         <lane id="S1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="3.04" shape="488.51,627.02 488.74,630.06">
             <param key="origId" value="408747258"/>
         </lane>
-    </edge>
-    <edge id="S2" from="J2" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="491.94,629.97 493.35,650.58">
-        <lane id="S2_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="495.14,629.90 496.53,650.17">
-            <param key="origId" value="571505150 921430816"/>
-        </lane>
-        <lane id="S2_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="491.95,630.12 493.34,650.38">
-            <param key="origId" value="571505150 921430816"/>
-        </lane>
-        <lane id="S2_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="20.31" shape="488.76,630.34 490.14,650.58">
-            <param key="origId" value="571505150 921430816"/>
-        </lane>
-        <param key="origTo" value="2164664304"/>
     </edge>
     <edge id="SA0" from="main_interseccion" to="3622576454" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" shape="495.92,685.03 496.37,691.74 498.15,717.26">
         <lane id="SA0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="13.89" length="22.03" shape="499.71,693.59 501.24,715.56">
@@ -385,14 +361,14 @@
             <param key="origId" value="572479039"/>
         </lane>
     </edge>
-    <edge id="W0" from="4106739106" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="1.95,703.63 442.15,668.60">
-        <lane id="W0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="1.70,700.44 441.71,665.42">
+    <edge id="W" from="4106739106" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" shape="1.95,703.63 442.15,668.60">
+        <lane id="W_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="1.70,700.44 441.71,665.42">
             <param key="origId" value="570129391"/>
         </lane>
-        <lane id="W0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="1.95,703.63 441.97,668.61">
+        <lane id="W_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="1.95,703.63 441.97,668.61">
             <param key="origId" value="570129391"/>
         </lane>
-        <lane id="W0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="2.20,706.82 442.22,671.80">
+        <lane id="W_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship" speed="8.33" length="441.41" shape="2.20,706.82 442.22,671.80">
             <param key="origId" value="570129391"/>
         </lane>
         <param key="origTo" value="3622576408"/>
@@ -445,7 +421,26 @@
         </lane>
     </edge>
 
-
+    <tlLogic id="semaforos" type="actuated" programID="0" offset="0">
+        <phase duration="38" state="GGGGgggrrrrrrrGGGgggrrrrrrrrrr" minDur="10" maxDur="50"/>
+        <phase duration="3"  state="yyyyyyyrrrrrrryyyyyyrrrrrrrrrr"/>
+        <phase duration="3"  state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
+        <phase duration="38" state="rrrrrrrGggGgggrrrrrrGGgGgGgggg" minDur="10" maxDur="50"/>
+        <phase duration="3"  state="rrrrrrryyyyyyyrrrrrryyyyyyyyyy"/>
+        <phase duration="5"  state="rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"/>
+        <param key="E_0" value="Ind_E_0"/>
+        <param key="E_1" value="Ind_E_1"/>
+        <param key="E_2" value="Ind_E_2"/>
+        <param key="N_0" value="Ind_N_0"/>
+        <param key="N_1" value="Ind_N_1"/>
+        <param key="N_2" value="Ind_N_2"/>
+        <param key="S_0" value="Ind_S_0"/>
+        <param key="S_1" value="Ind_S_1"/>
+        <param key="S_2" value="Ind_S_2"/>
+        <param key="W_0" value="Ind_W_0"/>
+        <param key="W_1" value="Ind_W_1"/>
+        <param key="W_2" value="Ind_W_2"/>
+    </tlLogic>
 
     <junction id="1236859340" type="dead_end" x="542.05" y="1160.48" incLanes="SA2_0 SA2_1 SA2_2" intLanes="" shape="546.82,1159.97 537.28,1160.99"/>
     <junction id="2172154306" type="dead_end" x="429.90" y="2.29" incLanes="NA0_0 NA0_1 NA0_2" intLanes="" shape="425.11,2.60 434.69,1.98"/>
@@ -500,7 +495,7 @@
         <request index="2" response="0000" foes="0000" cont="0"/>
         <request index="3" response="0000" foes="0000" cont="0"/>
     </junction>
-    <junction id="main_interseccion" type="traffic_light" x="470.93" y="677.03" incLanes="N0_0 N0_1 N0_2 E2_0 E2_1 E2_2 S2_0 S2_1 S2_2 W0_0 W0_1 W0_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_30_0 :main_interseccion_31_0 :main_interseccion_32_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_33_0 :main_interseccion_10_0 :main_interseccion_34_0 :main_interseccion_35_0 :main_interseccion_36_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_37_0 :main_interseccion_38_0 :main_interseccion_39_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_40_0 :main_interseccion_23_0 :main_interseccion_41_0 :main_interseccion_25_0 :main_interseccion_42_0 :main_interseccion_43_0 :main_interseccion_44_0 :main_interseccion_45_0" shape="469.12,695.64 501.30,693.48 501.59,691.23 502.09,690.41 502.83,689.80 503.81,689.39 505.02,689.18 502.96,661.36 500.63,660.24 499.73,658.69 499.02,656.48 498.48,653.60 498.13,650.07 466.61,652.09 466.09,655.11 464.10,657.70 460.66,659.87 455.76,661.62 449.40,662.94 441.58,663.83 443.83,691.74 451.42,691.29 457.67,691.29 462.56,691.72 466.10,692.58 468.28,693.89">
+    <junction id="main_interseccion" type="traffic_light" x="470.93" y="677.03" incLanes="N_0 N_1 N_2 E_0 E_1 E_2 S_0 S_1 S_2 W_0 W_1 W_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_30_0 :main_interseccion_31_0 :main_interseccion_32_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_33_0 :main_interseccion_10_0 :main_interseccion_34_0 :main_interseccion_35_0 :main_interseccion_36_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_37_0 :main_interseccion_38_0 :main_interseccion_39_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_40_0 :main_interseccion_23_0 :main_interseccion_41_0 :main_interseccion_25_0 :main_interseccion_42_0 :main_interseccion_43_0 :main_interseccion_44_0 :main_interseccion_45_0" shape="469.12,695.64 501.30,693.48 501.59,691.23 502.09,690.41 502.83,689.80 503.81,689.39 505.02,689.18 502.96,661.36 500.63,660.24 499.73,658.69 499.02,656.48 498.48,653.60 498.13,650.07 466.61,652.09 466.09,655.11 464.10,657.70 460.66,659.87 455.76,661.62 449.40,662.94 441.58,663.83 443.83,691.74 451.42,691.29 457.67,691.29 462.56,691.72 466.10,692.58 468.28,693.89">
         <request index="0"  response="000000000000000000000000000000" foes="000000000001100000010110000000" cont="0"/>
         <request index="1"  response="011101010000000001101000000000" foes="011111111111100001111110000000" cont="0"/>
         <request index="2"  response="011101010000000001101000000000" foes="011111111111100001111110000000" cont="0"/>
@@ -535,74 +530,74 @@
         <param key="origId" value="2164402551 2164402561 2164664296 2164664304 3622576353 3622576408 3622576413 3622576419 5499886049 5499886050 5499886054 5499886059"/>
     </junction>
 
-    <junction id=":main_interseccion_30_0" type="internal" x="490.27" y="674.27" incLanes=":main_interseccion_4_0 S2_0 S2_1 S2_2" intLanes=":main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_13_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2"/>
-    <junction id=":main_interseccion_31_0" type="internal" x="489.01" y="673.09" incLanes=":main_interseccion_4_1 S2_0 S2_1 S2_2" intLanes=":main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_13_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2"/>
-    <junction id=":main_interseccion_32_0" type="internal" x="491.25" y="691.32" incLanes=":main_interseccion_6_0 S2_0 S2_1 S2_2 W0_1 W0_2" intLanes=":main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_24_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2"/>
-    <junction id=":main_interseccion_33_0" type="internal" x="484.38" y="672.57" incLanes=":main_interseccion_9_0 W0_0 W0_1 W0_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
-    <junction id=":main_interseccion_34_0" type="internal" x="487.97" y="672.44" incLanes=":main_interseccion_11_0 W0_0 W0_1 W0_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
-    <junction id=":main_interseccion_35_0" type="internal" x="489.30" y="672.39" incLanes=":main_interseccion_11_1 W0_0 W0_1 W0_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
-    <junction id=":main_interseccion_36_0" type="internal" x="500.91" y="671.40" incLanes=":main_interseccion_13_0 N0_2 W0_0 W0_1 W0_2" intLanes=":main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
-    <junction id=":main_interseccion_37_0" type="internal" x="477.07" y="666.79" incLanes=":main_interseccion_17_0 N0_0 N0_1 N0_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2 :main_interseccion_29_0"/>
-    <junction id=":main_interseccion_38_0" type="internal" x="470.00" y="671.45" incLanes=":main_interseccion_17_1 N0_0 N0_1 N0_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2 :main_interseccion_29_0"/>
-    <junction id=":main_interseccion_39_0" type="internal" x="476.64" y="654.26" incLanes=":main_interseccion_19_0 E2_1 E2_2 N0_0 N0_1 N0_2 W0_0 W0_1" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_9_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_20_0 :main_interseccion_22_0"/>
-    <junction id=":main_interseccion_40_0" type="internal" x="448.49" y="667.65" incLanes=":main_interseccion_22_0 W0_0" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_9_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_19_0 :main_interseccion_21_0"/>
-    <junction id=":main_interseccion_41_0" type="internal" x="477.73" y="681.23" incLanes=":main_interseccion_24_0 E2_0 E2_1 E2_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_25_0 :main_interseccion_26_1"/>
-    <junction id=":main_interseccion_42_0" type="internal" x="476.61" y="681.33" incLanes=":main_interseccion_26_0 E2_0 E2_1 E2_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1"/>
-    <junction id=":main_interseccion_43_0" type="internal" x="475.13" y="681.47" incLanes=":main_interseccion_26_1 E2_0 E2_1 E2_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_24_0"/>
-    <junction id=":main_interseccion_44_0" type="internal" x="473.63" y="681.61" incLanes=":main_interseccion_26_2 E2_0 E2_1 E2_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1"/>
-    <junction id=":main_interseccion_45_0" type="internal" x="446.12" y="684.84" incLanes=":main_interseccion_29_0 E2_0 E2_1 E2_2 N0_0 S2_2" intLanes=":main_interseccion_0_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_17_0 :main_interseccion_17_1"/>
+    <junction id=":main_interseccion_30_0" type="internal" x="490.27" y="674.27" incLanes=":main_interseccion_4_0 S_0 S_1 S_2" intLanes=":main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_13_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2"/>
+    <junction id=":main_interseccion_31_0" type="internal" x="489.01" y="673.09" incLanes=":main_interseccion_4_1 S_0 S_1 S_2" intLanes=":main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_13_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2"/>
+    <junction id=":main_interseccion_32_0" type="internal" x="491.25" y="691.32" incLanes=":main_interseccion_6_0 S_0 S_1 S_2 W_1 W_2" intLanes=":main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_24_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2"/>
+    <junction id=":main_interseccion_33_0" type="internal" x="484.38" y="672.57" incLanes=":main_interseccion_9_0 W_0 W_1 W_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
+    <junction id=":main_interseccion_34_0" type="internal" x="487.97" y="672.44" incLanes=":main_interseccion_11_0 W_0 W_1 W_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
+    <junction id=":main_interseccion_35_0" type="internal" x="489.30" y="672.39" incLanes=":main_interseccion_11_1 W_0 W_1 W_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_19_0 :main_interseccion_20_0 :main_interseccion_21_0 :main_interseccion_22_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
+    <junction id=":main_interseccion_36_0" type="internal" x="500.91" y="671.40" incLanes=":main_interseccion_13_0 N_2 W_0 W_1 W_2" intLanes=":main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_25_0"/>
+    <junction id=":main_interseccion_37_0" type="internal" x="477.07" y="666.79" incLanes=":main_interseccion_17_0 N_0 N_1 N_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2 :main_interseccion_29_0"/>
+    <junction id=":main_interseccion_38_0" type="internal" x="470.00" y="671.45" incLanes=":main_interseccion_17_1 N_0 N_1 N_2" intLanes=":main_interseccion_0_0 :main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_9_0 :main_interseccion_10_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_21_0 :main_interseccion_23_0 :main_interseccion_24_0 :main_interseccion_25_0 :main_interseccion_26_0 :main_interseccion_26_1 :main_interseccion_26_2 :main_interseccion_29_0"/>
+    <junction id=":main_interseccion_39_0" type="internal" x="476.64" y="654.26" incLanes=":main_interseccion_19_0 E_1 E_2 N_0 N_1 N_2 W_0 W_1" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_9_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_20_0 :main_interseccion_22_0"/>
+    <junction id=":main_interseccion_40_0" type="internal" x="448.49" y="667.65" incLanes=":main_interseccion_22_0 W_0" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_9_0 :main_interseccion_11_0 :main_interseccion_11_1 :main_interseccion_19_0 :main_interseccion_21_0"/>
+    <junction id=":main_interseccion_41_0" type="internal" x="477.73" y="681.23" incLanes=":main_interseccion_24_0 E_0 E_1 E_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_25_0 :main_interseccion_26_1"/>
+    <junction id=":main_interseccion_42_0" type="internal" x="476.61" y="681.33" incLanes=":main_interseccion_26_0 E_0 E_1 E_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1"/>
+    <junction id=":main_interseccion_43_0" type="internal" x="475.13" y="681.47" incLanes=":main_interseccion_26_1 E_0 E_1 E_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1 :main_interseccion_24_0"/>
+    <junction id=":main_interseccion_44_0" type="internal" x="473.63" y="681.61" incLanes=":main_interseccion_26_2 E_0 E_1 E_2" intLanes=":main_interseccion_1_0 :main_interseccion_1_1 :main_interseccion_1_2 :main_interseccion_4_0 :main_interseccion_4_1 :main_interseccion_6_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_14_0 :main_interseccion_14_1 :main_interseccion_14_2 :main_interseccion_17_0 :main_interseccion_17_1"/>
+    <junction id=":main_interseccion_45_0" type="internal" x="446.12" y="684.84" incLanes=":main_interseccion_29_0 E_0 E_1 E_2 N_0 S_2" intLanes=":main_interseccion_0_0 :main_interseccion_7_0 :main_interseccion_7_1 :main_interseccion_10_0 :main_interseccion_17_0 :main_interseccion_17_1"/>
 
+    <connection from="E" to="EA0" fromLane="0" toLane="0" via=":main_interseccion_7_0" tl="semaforos" linkIndex="7" dir="s" state="o"/>
+    <connection from="E" to="EA0" fromLane="1" toLane="1" via=":main_interseccion_7_1" tl="semaforos" linkIndex="8" dir="s" state="o"/>
+    <connection from="E" to="NA0" fromLane="1" toLane="0" via=":main_interseccion_9_0" tl="semaforos" linkIndex="9" dir="l" state="o"/>
+    <connection from="E" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_10_0" tl="semaforos" linkIndex="10" dir="s" state="o"/>
+    <connection from="E" to="NA0" fromLane="2" toLane="1" via=":main_interseccion_11_0" tl="semaforos" linkIndex="11" dir="l" state="o"/>
+    <connection from="E" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_11_1" tl="semaforos" linkIndex="12" dir="l" state="o"/>
+    <connection from="E" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_13_0" tl="semaforos" linkIndex="13" dir="t" state="o"/>
     <connection from="E0" to="E1" fromLane="0" toLane="0" via=":356854809-AddedOffRampNode_0_0" dir="s" state="M"/>
     <connection from="E0" to="E1" fromLane="0" toLane="1" via=":356854809-AddedOffRampNode_0_1" dir="s" state="M"/>
     <connection from="E0" to="E1" fromLane="1" toLane="2" via=":356854809-AddedOffRampNode_0_2" dir="s" state="M"/>
     <connection from="E0" to="E1" fromLane="2" toLane="3" via=":356854809-AddedOffRampNode_0_3" dir="s" state="M"/>
     <connection from="E1" to="salida_5" fromLane="0" toLane="0" via=":3622576381_0_0" dir="s" state="M"/>
-    <connection from="E1" to="E2" fromLane="1" toLane="0" via=":3622576381_1_0" dir="s" state="M"/>
-    <connection from="E1" to="E2" fromLane="2" toLane="1" via=":3622576381_1_1" dir="s" state="M"/>
-    <connection from="E1" to="E2" fromLane="3" toLane="2" via=":3622576381_1_2" dir="s" state="M"/>
-    <connection from="E2" to="EA0" fromLane="0" toLane="0" via=":main_interseccion_7_0" tl="semaforos" linkIndex="7" dir="s" state="o"/>
-    <connection from="E2" to="EA0" fromLane="1" toLane="1" via=":main_interseccion_7_1" tl="semaforos" linkIndex="8" dir="s" state="o"/>
-    <connection from="E2" to="NA0" fromLane="1" toLane="0" via=":main_interseccion_9_0" tl="semaforos" linkIndex="9" dir="l" state="o"/>
-    <connection from="E2" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_10_0" tl="semaforos" linkIndex="10" dir="s" state="o"/>
-    <connection from="E2" to="NA0" fromLane="2" toLane="1" via=":main_interseccion_11_0" tl="semaforos" linkIndex="11" dir="l" state="o"/>
-    <connection from="E2" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_11_1" tl="semaforos" linkIndex="12" dir="l" state="o"/>
-    <connection from="E2" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_13_0" tl="semaforos" linkIndex="13" dir="t" state="o"/>
-    <connection from="N0" to="EA0" fromLane="0" toLane="0" via=":main_interseccion_0_0" tl="semaforos" linkIndex="0" dir="r" state="O"/>
-    <connection from="N0" to="NA0" fromLane="0" toLane="0" via=":main_interseccion_1_0" tl="semaforos" linkIndex="1" dir="s" state="O"/>
-    <connection from="N0" to="NA0" fromLane="1" toLane="1" via=":main_interseccion_1_1" tl="semaforos" linkIndex="2" dir="s" state="O"/>
-    <connection from="N0" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_1_2" tl="semaforos" linkIndex="3" dir="s" state="O"/>
-    <connection from="N0" to="WA0" fromLane="2" toLane="1" via=":main_interseccion_4_0" tl="semaforos" linkIndex="4" dir="l" state="o"/>
-    <connection from="N0" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_4_1" tl="semaforos" linkIndex="5" dir="l" state="o"/>
-    <connection from="N0" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_6_0" tl="semaforos" linkIndex="6" dir="t" state="o"/>
+    <connection from="E1" to="E" fromLane="1" toLane="0" via=":3622576381_1_0" dir="s" state="M"/>
+    <connection from="E1" to="E" fromLane="2" toLane="1" via=":3622576381_1_1" dir="s" state="M"/>
+    <connection from="E1" to="E" fromLane="3" toLane="2" via=":3622576381_1_2" dir="s" state="M"/>
+    <connection from="N" to="EA0" fromLane="0" toLane="0" via=":main_interseccion_0_0" tl="semaforos" linkIndex="0" dir="r" state="O"/>
+    <connection from="N" to="NA0" fromLane="0" toLane="0" via=":main_interseccion_1_0" tl="semaforos" linkIndex="1" dir="s" state="O"/>
+    <connection from="N" to="NA0" fromLane="1" toLane="1" via=":main_interseccion_1_1" tl="semaforos" linkIndex="2" dir="s" state="O"/>
+    <connection from="N" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_1_2" tl="semaforos" linkIndex="3" dir="s" state="O"/>
+    <connection from="N" to="WA0" fromLane="2" toLane="1" via=":main_interseccion_4_0" tl="semaforos" linkIndex="4" dir="l" state="o"/>
+    <connection from="N" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_4_1" tl="semaforos" linkIndex="5" dir="l" state="o"/>
+    <connection from="N" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_6_0" tl="semaforos" linkIndex="6" dir="t" state="o"/>
+    <connection from="S" to="SA0" fromLane="0" toLane="0" via=":main_interseccion_14_0" tl="semaforos" linkIndex="14" dir="s" state="O"/>
+    <connection from="S" to="SA0" fromLane="1" toLane="1" via=":main_interseccion_14_1" tl="semaforos" linkIndex="15" dir="s" state="O"/>
+    <connection from="S" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_14_2" tl="semaforos" linkIndex="16" dir="s" state="O"/>
+    <connection from="S" to="EA0" fromLane="2" toLane="0" via=":main_interseccion_17_0" tl="semaforos" linkIndex="17" dir="l" state="o"/>
+    <connection from="S" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_17_1" tl="semaforos" linkIndex="18" dir="l" state="o"/>
+    <connection from="S" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_19_0" tl="semaforos" linkIndex="19" dir="t" state="o"/>
     <connection from="S0" to="salida_80" fromLane="0" toLane="0" via=":J4_0_0" dir="R" state="M"/>
     <connection from="S0" to="S1" fromLane="0" toLane="0" via=":J4_1_0" dir="s" state="M"/>
     <connection from="S0" to="S1" fromLane="1" toLane="1" via=":J4_1_1" dir="s" state="M"/>
     <connection from="S0" to="S1" fromLane="2" toLane="2" via=":J4_1_2" dir="s" state="M"/>
-    <connection from="S1" to="S2" fromLane="0" toLane="0" via=":J2_0_0" dir="s" state="M"/>
-    <connection from="S1" to="S2" fromLane="1" toLane="1" via=":J2_0_1" dir="s" state="M"/>
-    <connection from="S1" to="S2" fromLane="2" toLane="2" via=":J2_0_2" dir="s" state="M"/>
-    <connection from="S2" to="SA0" fromLane="0" toLane="0" via=":main_interseccion_14_0" tl="semaforos" linkIndex="14" dir="s" state="O"/>
-    <connection from="S2" to="SA0" fromLane="1" toLane="1" via=":main_interseccion_14_1" tl="semaforos" linkIndex="15" dir="s" state="O"/>
-    <connection from="S2" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_14_2" tl="semaforos" linkIndex="16" dir="s" state="O"/>
-    <connection from="S2" to="EA0" fromLane="2" toLane="0" via=":main_interseccion_17_0" tl="semaforos" linkIndex="17" dir="l" state="o"/>
-    <connection from="S2" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_17_1" tl="semaforos" linkIndex="18" dir="l" state="o"/>
-    <connection from="S2" to="NA0" fromLane="2" toLane="2" via=":main_interseccion_19_0" tl="semaforos" linkIndex="19" dir="t" state="o"/>
+    <connection from="S1" to="S" fromLane="0" toLane="0" via=":J2_0_0" dir="s" state="M"/>
+    <connection from="S1" to="S" fromLane="1" toLane="1" via=":J2_0_1" dir="s" state="M"/>
+    <connection from="S1" to="S" fromLane="2" toLane="2" via=":J2_0_2" dir="s" state="M"/>
     <connection from="SA0" to="SA1" fromLane="0" toLane="1" via=":3622576454_1_0" dir="s" state="M"/>
     <connection from="SA0" to="SA1" fromLane="1" toLane="2" via=":3622576454_1_1" dir="s" state="M"/>
     <connection from="SA0" to="SA1" fromLane="2" toLane="3" via=":3622576454_1_2" dir="s" state="M"/>
     <connection from="SA1" to="SA2" fromLane="1" toLane="0" via=":572479039#2-AddedOnRampNode_0_0" dir="s" state="M"/>
     <connection from="SA1" to="SA2" fromLane="2" toLane="1" via=":572479039#2-AddedOnRampNode_0_1" dir="s" state="M"/>
     <connection from="SA1" to="SA2" fromLane="3" toLane="2" via=":572479039#2-AddedOnRampNode_0_2" dir="s" state="M"/>
-    <connection from="W0" to="NA0" fromLane="0" toLane="0" via=":main_interseccion_20_0" tl="semaforos" linkIndex="20" dir="r" state="o"/>
-    <connection from="W0" to="WA0" fromLane="0" toLane="0" via=":main_interseccion_21_0" tl="semaforos" linkIndex="21" dir="s" state="o"/>
-    <connection from="W0" to="NA0" fromLane="1" toLane="1" via=":main_interseccion_22_0" tl="semaforos" linkIndex="22" dir="r" state="o"/>
-    <connection from="W0" to="WA0" fromLane="1" toLane="1" via=":main_interseccion_23_0" tl="semaforos" linkIndex="23" dir="s" state="o"/>
-    <connection from="W0" to="SA0" fromLane="1" toLane="1" via=":main_interseccion_24_0" tl="semaforos" linkIndex="24" dir="l" state="o"/>
-    <connection from="W0" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_25_0" tl="semaforos" linkIndex="25" dir="s" state="o"/>
-    <connection from="W0" to="SA0" fromLane="2" toLane="0" via=":main_interseccion_26_0" tl="semaforos" linkIndex="26" dir="l" state="o"/>
-    <connection from="W0" to="SA0" fromLane="2" toLane="1" via=":main_interseccion_26_1" tl="semaforos" linkIndex="27" dir="l" state="o"/>
-    <connection from="W0" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_26_2" tl="semaforos" linkIndex="28" dir="l" state="o"/>
-    <connection from="W0" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_29_0" tl="semaforos" linkIndex="29" dir="t" state="o"/>
+    <connection from="W" to="NA0" fromLane="0" toLane="0" via=":main_interseccion_20_0" tl="semaforos" linkIndex="20" dir="r" state="o"/>
+    <connection from="W" to="WA0" fromLane="0" toLane="0" via=":main_interseccion_21_0" tl="semaforos" linkIndex="21" dir="s" state="o"/>
+    <connection from="W" to="NA0" fromLane="1" toLane="1" via=":main_interseccion_22_0" tl="semaforos" linkIndex="22" dir="r" state="o"/>
+    <connection from="W" to="WA0" fromLane="1" toLane="1" via=":main_interseccion_23_0" tl="semaforos" linkIndex="23" dir="s" state="o"/>
+    <connection from="W" to="SA0" fromLane="1" toLane="1" via=":main_interseccion_24_0" tl="semaforos" linkIndex="24" dir="l" state="o"/>
+    <connection from="W" to="WA0" fromLane="2" toLane="2" via=":main_interseccion_25_0" tl="semaforos" linkIndex="25" dir="s" state="o"/>
+    <connection from="W" to="SA0" fromLane="2" toLane="0" via=":main_interseccion_26_0" tl="semaforos" linkIndex="26" dir="l" state="o"/>
+    <connection from="W" to="SA0" fromLane="2" toLane="1" via=":main_interseccion_26_1" tl="semaforos" linkIndex="27" dir="l" state="o"/>
+    <connection from="W" to="SA0" fromLane="2" toLane="2" via=":main_interseccion_26_2" tl="semaforos" linkIndex="28" dir="l" state="o"/>
+    <connection from="W" to="EA0" fromLane="2" toLane="1" via=":main_interseccion_29_0" tl="semaforos" linkIndex="29" dir="t" state="o"/>
     <connection from="WA0" to="WA1" fromLane="0" toLane="1" via=":J1_1_0" dir="s" state="M"/>
     <connection from="WA0" to="WA1" fromLane="1" toLane="2" via=":J1_1_1" dir="s" state="M"/>
     <connection from="WA0" to="WA1" fromLane="2" toLane="3" via=":J1_1_2" dir="s" state="M"/>
@@ -617,9 +612,9 @@
     <connection from=":356854809-AddedOffRampNode_0" to="E1" fromLane="2" toLane="2" dir="s" state="M"/>
     <connection from=":356854809-AddedOffRampNode_0" to="E1" fromLane="3" toLane="3" dir="s" state="M"/>
     <connection from=":3622576381_0" to="salida_5" fromLane="0" toLane="0" dir="s" state="M"/>
-    <connection from=":3622576381_1" to="E2" fromLane="0" toLane="0" dir="s" state="M"/>
-    <connection from=":3622576381_1" to="E2" fromLane="1" toLane="1" dir="s" state="M"/>
-    <connection from=":3622576381_1" to="E2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":3622576381_1" to="E" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":3622576381_1" to="E" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":3622576381_1" to="E" fromLane="2" toLane="2" dir="s" state="M"/>
     <connection from=":3622576454_0" to="SA1" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":3622576454_1" to="SA1" fromLane="0" toLane="1" dir="s" state="M"/>
     <connection from=":3622576454_1" to="SA1" fromLane="1" toLane="2" dir="s" state="M"/>
@@ -634,9 +629,9 @@
     <connection from=":J1_1" to="WA1" fromLane="0" toLane="1" dir="s" state="M"/>
     <connection from=":J1_1" to="WA1" fromLane="1" toLane="2" dir="s" state="M"/>
     <connection from=":J1_1" to="WA1" fromLane="2" toLane="3" dir="s" state="M"/>
-    <connection from=":J2_0" to="S2" fromLane="0" toLane="0" dir="s" state="M"/>
-    <connection from=":J2_0" to="S2" fromLane="1" toLane="1" dir="s" state="M"/>
-    <connection from=":J2_0" to="S2" fromLane="2" toLane="2" dir="s" state="M"/>
+    <connection from=":J2_0" to="S" fromLane="0" toLane="0" dir="s" state="M"/>
+    <connection from=":J2_0" to="S" fromLane="1" toLane="1" dir="s" state="M"/>
+    <connection from=":J2_0" to="S" fromLane="2" toLane="2" dir="s" state="M"/>
     <connection from=":J4_0" to="salida_80" fromLane="0" toLane="0" dir="R" state="M"/>
     <connection from=":J4_1" to="S1" fromLane="0" toLane="0" dir="s" state="M"/>
     <connection from=":J4_1" to="S1" fromLane="1" toLane="1" dir="s" state="M"/>

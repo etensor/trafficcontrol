@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-08-10 19:40:29 by Eclipse SUMO netedit Version 1.19.0
+<!-- generated on 2024-08-15 22:09:34 by Eclipse SUMO netedit Version 1.19.0
 -->
 
 <additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
     <!-- Detectors -->
-    <inductionLoop id="Ind_E_0" lane="E_0" pos="0.00" file="logs/ind_E_0.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_E_1" lane="E_1" pos="0.00" file="logs/ind_E_1.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_E_2" lane="E_2" pos="0.00" file="logs/ind_E_2.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_N_0" lane="N_0" pos="0.00" file="logs/ind_N_0.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_N_1" lane="N_1" pos="0.00" file="logs/ind_N_1.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_N_2" lane="N_2" pos="0.00" file="logs/ind_N_2.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_S_0" lane="S_0" pos="0.00" file="logs/ind_S_0.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_S_1" lane="S_1" pos="0.00" file="logs/ind_S_1.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_S_2" lane="S_2" pos="0.00" file="logs/ind_S_2.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_W_0" lane="W_0" pos="0.00" file="logs/ind_W_0.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_W_1" lane="W_1" pos="0.00" file="logs/ind_W_1.xml" friendlyPos="1"/>
-    <inductionLoop id="Ind_W_2" lane="W_2" pos="0.00" file="logs/ind_W_2.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_E_0" lane="E_0" pos="10.00" length="30.00" file="logs/area_E_0.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_E_1" lane="E_1" pos="10.00" length="30.00" file="logs/area_E_1.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_E_2" lane="E_2" pos="10.00" length="30.00" file="logs/area_E_2.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_N_0" lane="N_0" pos="15.00" length="30.00" file="logs/area_N_0.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_N_1" lane="N_1" pos="15.00" length="30.00" file="logs/area_N_1.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_N_2" lane="N_2" pos="15.00" length="30.00" file="logs/area_N_2.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_S_0" lane="S_0" pos="12.00" length="30.00" file="logs/area_S_0.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_S_1" lane="S_1" pos="12.00" length="30.00" file="logs/area_S_1.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_S_2" lane="S_2" pos="12.00" length="30.00" file="logs/area_S_2.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_W_0" lane="W_0" pos="5.00" length="30.00" file="logs/area_W_0.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_W_1" lane="W_1" pos="5.00" length="30.00" file="logs/area_W_1.xml" friendlyPos="1"/>
-    <laneAreaDetector id="Area_W_2" lane="W_2" pos="5.00" length="30.00" file="logs/area_W_2.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_E_0" lane="E_0" pos="-5.00" file="logs/ind_E_0.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_E_1" lane="E_1" pos="-5.00" file="logs/ind_E_1.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_E_2" lane="E_2" pos="-5.00" file="logs/ind_E_2.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_N_0" lane="N_0" pos="-5.00" file="logs/ind_N_0.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_N_1" lane="N_1" pos="-5.00" file="logs/ind_N_1.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_N_2" lane="N_2" pos="-5.00" file="logs/ind_N_2.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_S_0" lane="S_0" pos="-5.00" file="logs/ind_S_0.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_S_1" lane="S_1" pos="-5.00" file="logs/ind_S_1.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_S_2" lane="S_2" pos="-5.00" file="logs/ind_S_2.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_W_0" lane="W_0" pos="-5.00" file="logs/ind_W_0.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_W_1" lane="W_1" pos="-5.00" file="logs/ind_W_1.xml" friendlyPos="1"/>
+    <inductionLoop id="Ind_W_2" lane="W_2" pos="-5.00" file="logs/ind_W_2.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_E_0" lane="E_0" pos="5.00" length="50.00" file="logs/area_E_0.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_E_1" lane="E_1" pos="5.00" length="50.00" file="logs/area_E_1.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_E_2" lane="E_2" pos="5.00" length="50.00" file="logs/area_E_2.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_N_0" lane="N_0" pos="5.00" length="50.00" file="logs/area_N_0.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_N_1" lane="N_1" pos="5.00" length="50.00" file="logs/area_N_1.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_N_2" lane="N_2" pos="5.00" length="50.00" file="logs/area_N_2.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_S_0" lane="S_0" pos="5.00" length="50.00" file="logs/area_S_0.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_S_1" lane="S_1" pos="5.00" length="50.00" file="logs/area_S_1.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_S_2" lane="S_2" pos="5.00" length="50.00" file="logs/area_S_2.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_W_0" lane="W_0" pos="5.00" length="50.00" file="logs/area_W_0.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_W_1" lane="W_1" pos="5.00" length="50.00" file="logs/area_W_1.xml" friendlyPos="1"/>
+    <laneAreaDetector id="Area_W_2" lane="W_2" pos="5.00" length="50.00" file="logs/area_W_2.xml" friendlyPos="1"/>
     <!-- Shapes -->
     <poly id="211437440" type="leisure.pitch" color="207,245,201" fill="1" layer="-2.00" shape="589.980000,592.570000 585.710000,588.760000 503.840000,599.310000 507.490000,632.100000 511.990000,641.660000 526.880000,652.660000 550.020000,653.270000 579.390000,651.400000 598.660000,649.560000 592.130000,597.100000 589.990000,592.770000"/>
     <poly id="571160049" type="building.commercial" color="255,230,230" fill="1" layer="-1.00" shape="377.574850,548.973818 414.788956,546.330915 415.234234,552.531143 422.158306,552.029326 424.340168,582.829744 418.006089,583.286955 418.495895,590.145123 439.590938,588.650823 441.661481,617.945800 448.852720,617.432831 450.333269,638.330737 426.644482,640.014613 427.145419,647.106966 384.743825,650.117871 381.459900,603.816855 380.591608,591.483302 377.574850,548.973818"/>

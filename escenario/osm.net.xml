@@ -385,14 +385,15 @@
     </edge>
 
     <tlLogic id="semaforos" type="actuated" programID="0" offset="0">
-        <phase duration="35" state="GGGGggrrrrrGGGGggrrrrr" minDur="5" maxDur="50"/>
+        <phase duration="36" state="GGGGrrrrrrrGGGGrrrrrrr" minDur="5" maxDur="50"/>
         <phase duration="3"  state="yyyyyyrrrrryyyyyyrrrrr"/>
-        <phase duration="3"  state="rrrrrrrrrrrrrrrrrrrrrr"/>
-        <phase duration="34" state="rrrrrrGGGggrrrrrrGGGGg" minDur="5" maxDur="50"/>
-        <phase duration="3"  state="rrrrrryyyggrrrrrryyyyg"/>
-        <phase duration="6"  state="rrrrrrrrrGGrrrrrrrrrrG" minDur="5" maxDur="50"/>
-        <phase duration="3"  state="rrrrrrrrryyrrrrrrrrrry"/>
-        <phase duration="3"  state="rrrrrrrrrrrrrrrrrrrrrr"/>
+        <phase duration="24" state="rrrrGGrrrrrrrrrGGrrrrr" minDur="5" maxDur="50"/>
+        <phase duration="3"  state="rrrryyrrrrrrrrryyrrrrr"/>
+        <phase duration="3"  state="rrrrrryyyrrrrrrrryyyyr"/>
+        <phase duration="26" state="rrrrrrGGGggrrrrrrGGGGg" minDur="5" maxDur="50"/>
+        <phase duration="3"  state="rrrrrryyyyyrrrrrryyyyy"/>
+        <phase duration="24"  state="rrrrrrrrrGGrrrrrrrrrrG" minDur="5" maxDur="50"/>
+        <phase duration="3"  state="yyyyrrrrryyyyyyrrrrrry"/>
     </tlLogic>
 
     <junction id="1236859340" type="dead_end" x="542.05" y="1160.48" incLanes="SA2_0 SA2_1 SA2_2" intLanes="" shape="546.82,1159.97 537.28,1160.99"/>

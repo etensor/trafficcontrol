@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-09-08 19:15:57 by Eclipse SUMO netedit Version 1.20.0
+<!-- generated on 2024-09-08 19:22:17 by Eclipse SUMO netedit Version 1.20.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
@@ -361,16 +361,28 @@
     </edge>
 
     <tlLogic id="semaforos" type="actuated" programID="0" offset="0">
-        <phase duration="36" state="GGGGrrrrrrrGGGGrrrrrrr" minDur="5" maxDur="50"/>
-        <phase duration="3"  state="yyyyyyrrrrryyyyyyrrrrr"/>
-        <phase duration="24" state="rrrrGGrrrrrrrrrrrrrrrr"/>
-        <phase duration="3"  state="rrrryyrrrrrrrrryyrrrrr"/>
-        <phase duration="24" state="rrrrrrrrrrrrrrrGGrrrrr"/>
-        <phase duration="3"  state="rrrrrryyyrrrrrryyyyyyr"/>
-        <phase duration="36" state="rrrrrrGGGrrrrrrrrGGGGr"/>
-        <phase duration="3"  state="rrrrrryyyyyrrrrrryyyyr"/>
-        <phase duration="24" state="rrrrrrrrrGGrrrrrrrrrrr"/>
-        <phase duration="3"  state="yyyyrrrrryyyyyyrrrrrrr"/>
+        <phase duration="36" state="GGGGrrrrrrrGGGGrrrrrr" minDur="5" maxDur="50"/>
+        <phase duration="3"  state="yyyyyyrrrrryyyyyyrrrr"/>
+        <phase duration="24" state="rrrrGGrrrrrrrrrrrrrrr"/>
+        <phase duration="3"  state="rrrryyrrrrrrrrryyrrrr"/>
+        <phase duration="24" state="rrrrrrrrrrrrrrrGGrrrr"/>
+        <phase duration="3"  state="rrrrrryyyrrrrrryyyyyy"/>
+        <phase duration="36" state="rrrrrrGGGrrrrrrrrGGGG"/>
+        <phase duration="3"  state="rrrrrryyyyyrrrrrryyyy"/>
+        <phase duration="24" state="rrrrrrrrrGGrrrrrrrrrr"/>
+        <phase duration="3"  state="yyyyrrrrryyyyyyrrrrrr"/>
+        <param key="E_0" value="Ind_E_0"/>
+        <param key="E_1" value="Ind_E_1"/>
+        <param key="E_2" value="Ind_E_2"/>
+        <param key="N_0" value="Ind_N_0"/>
+        <param key="N_1" value="Ind_N_1"/>
+        <param key="N_2" value="Ind_N_2"/>
+        <param key="S_0" value="Ind_S_0"/>
+        <param key="S_1" value="Ind_S_1"/>
+        <param key="S_2" value="Ind_S_2"/>
+        <param key="W_0" value="Ind_W_0"/>
+        <param key="W_1" value="Ind_W_1"/>
+        <param key="W_2" value="Ind_W_2"/>
     </tlLogic>
 
     <junction id="1236859340" type="dead_end" x="542.05" y="1160.48" incLanes="SA2_0 SA2_1 SA2_2" intLanes="" shape="546.82,1159.97 537.28,1160.99"/>

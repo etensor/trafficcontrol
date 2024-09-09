@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- generated on 2024-09-08 19:22:17 by Eclipse SUMO netedit Version 1.20.0
+<!-- generated on 2024-09-08 19:40:12 by Eclipse SUMO netedit Version 1.20.0
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/neteditConfiguration.xsd">
 
     <input>
@@ -58,9 +58,9 @@
         <lane id=":3622576381_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.27" length="2.92" shape="607.30,683.00 604.40,683.30"/>
     </edge>
     <edge id=":3622576381_1" function="internal">
-        <lane id=":3622576381_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="3.08" shape="607.08,679.81 606.20,679.95 605.62,680.18 605.04,680.41 604.16,680.55"/>
-        <lane id=":3622576381_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="3.08" shape="606.86,676.61 605.97,676.76 605.38,676.99 604.79,677.22 603.89,677.36"/>
-        <lane id=":3622576381_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="3.08" shape="606.64,673.42 605.73,673.57 605.13,673.80 604.53,674.03 603.62,674.18"/>
+        <lane id=":3622576381_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="3.08" shape="607.08,679.81 606.20,679.95 605.62,680.18 605.04,680.41 604.16,680.55"/>
+        <lane id=":3622576381_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="3.08" shape="606.86,676.61 605.97,676.76 605.38,676.99 604.79,677.22 603.89,677.36"/>
+        <lane id=":3622576381_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="3.08" shape="606.64,673.42 605.73,673.57 605.13,673.80 604.53,674.03 603.62,674.18"/>
     </edge>
     <edge id=":3622576454_0" function="internal">
         <lane id=":3622576454_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="18.05" length="3.11" shape="504.54,715.28 504.65,718.39"/>
@@ -89,23 +89,23 @@
         <lane id=":J1_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="8.33" length="23.84" shape="549.74,668.20 573.61,667.57"/>
     </edge>
     <edge id=":J2_0" function="internal">
-        <lane id=":J2_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="0.30" shape="482.91,844.75 482.89,844.45"/>
-        <lane id=":J2_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="0.30" shape="486.10,844.49 486.08,844.19"/>
-        <lane id=":J2_0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="0.30" shape="489.29,844.23 489.27,843.93"/>
+        <lane id=":J2_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="0.30" shape="482.91,844.75 482.89,844.45"/>
+        <lane id=":J2_0_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="0.30" shape="486.10,844.49 486.08,844.19"/>
+        <lane id=":J2_0_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="0.30" shape="489.29,844.23 489.27,843.93"/>
     </edge>
     <edge id=":J4_0" function="internal">
         <lane id=":J4_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="18.05" length="15.73" shape="489.92,530.17 490.56,535.16 491.61,538.87 492.77,542.03 493.69,545.38"/>
     </edge>
     <edge id=":main_interseccion_0" function="internal">
-        <lane id=":main_interseccion_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.31" length="29.35" shape="470.70,695.88 468.77,692.58 463.63,690.52 455.27,689.71 443.70,690.14"/>
+        <lane id=":main_interseccion_0_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="29.35" shape="470.70,695.88 468.77,692.58 463.63,690.52 455.27,689.71 443.70,690.14"/>
     </edge>
     <edge id=":main_interseccion_1" function="internal">
-        <lane id=":main_interseccion_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.28" length="43.94" shape="470.70,695.88 468.21,651.98"/>
-        <lane id=":main_interseccion_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.28" length="43.94" shape="473.89,695.65 471.40,651.78"/>
-        <lane id=":main_interseccion_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.28" length="43.94" shape="477.09,695.41 474.59,651.58"/>
+        <lane id=":main_interseccion_1_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="43.94" shape="470.70,695.88 468.21,651.98"/>
+        <lane id=":main_interseccion_1_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="43.94" shape="473.89,695.65 471.40,651.78"/>
+        <lane id=":main_interseccion_1_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="43.94" shape="477.09,695.41 474.59,651.58"/>
     </edge>
     <edge id=":main_interseccion_4" function="internal">
-        <lane id=":main_interseccion_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="40.25" shape="477.09,695.41 478.11,686.04 482.90,679.01 491.46,674.32 503.79,671.98"/>
+        <lane id=":main_interseccion_4_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="40.25" shape="477.09,695.41 478.11,686.04 482.90,679.01 491.46,674.32 503.79,671.98"/>
     </edge>
     <edge id=":main_interseccion_5" function="internal">
         <lane id=":main_interseccion_5_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="7.07" length="23.80" shape="477.09,695.41 480.70,689.02 484.61,686.69 488.82,688.42 493.34,694.22"/>
@@ -114,11 +114,11 @@
         <lane id=":main_interseccion_6_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="6.56" length="9.18" shape="505.09,687.74 502.59,688.28 500.87,689.46 499.91,691.28 499.72,693.75"/>
     </edge>
     <edge id=":main_interseccion_7" function="internal">
-        <lane id=":main_interseccion_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="61.44" shape="505.09,687.74 443.70,690.14"/>
-        <lane id=":main_interseccion_7_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="61.44" shape="504.83,684.56 443.44,686.96"/>
+        <lane id=":main_interseccion_7_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="61.44" shape="505.09,687.74 443.70,690.14"/>
+        <lane id=":main_interseccion_7_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="61.44" shape="504.83,684.56 443.44,686.96"/>
     </edge>
     <edge id=":main_interseccion_9" function="internal">
-        <lane id=":main_interseccion_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="14.34" length="48.22" shape="504.56,681.37 492.21,680.26 483.10,674.93 477.23,665.37 474.59,651.58"/>
+        <lane id=":main_interseccion_9_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="48.22" shape="504.56,681.37 492.21,680.26 483.10,674.93 477.23,665.37 474.59,651.58"/>
     </edge>
     <edge id=":main_interseccion_10" function="internal">
         <lane id=":main_interseccion_10_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="5.55" length="13.75" shape="504.56,681.37 500.85,679.31 499.49,677.06 500.47,674.62 503.79,671.98"/>
@@ -127,12 +127,12 @@
         <lane id=":main_interseccion_11_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="8.92" length="18.21" shape="496.53,650.17 497.31,657.10 498.69,661.98 500.68,664.82 503.27,665.60"/>
     </edge>
     <edge id=":main_interseccion_12" function="internal">
-        <lane id=":main_interseccion_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.28" length="43.72" shape="496.53,650.17 499.72,693.75"/>
-        <lane id=":main_interseccion_12_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.28" length="43.72" shape="493.34,650.38 496.53,693.99"/>
-        <lane id=":main_interseccion_12_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="15.28" length="43.72" shape="490.14,650.58 493.34,694.22"/>
+        <lane id=":main_interseccion_12_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="43.72" shape="496.53,650.17 499.72,693.75"/>
+        <lane id=":main_interseccion_12_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="43.72" shape="493.34,650.38 496.53,693.99"/>
+        <lane id=":main_interseccion_12_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.89" length="43.72" shape="490.14,650.58 493.34,694.22"/>
     </edge>
     <edge id=":main_interseccion_15" function="internal">
-        <lane id=":main_interseccion_15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="66.45" shape="490.14,650.58 487.96,665.03 479.44,675.90 464.60,683.21 443.44,686.96"/>
+        <lane id=":main_interseccion_15_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="66.45" shape="490.14,650.58 487.96,665.03 479.44,675.90 464.60,683.21 443.44,686.96"/>
     </edge>
     <edge id=":main_interseccion_16" function="internal">
         <lane id=":main_interseccion_16_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="6.92" length="22.76" shape="490.14,650.58 486.63,656.66 482.87,658.85 478.85,657.16 474.59,651.58"/>
@@ -141,19 +141,19 @@
         <lane id=":main_interseccion_17_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.88" length="32.42" shape="441.71,665.42 453.58,663.88 461.95,661.12 466.83,657.16 468.21,651.98"/>
     </edge>
     <edge id=":main_interseccion_18" function="internal">
-        <lane id=":main_interseccion_18_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="61.56" shape="441.71,665.42 503.27,665.60"/>
-        <lane id=":main_interseccion_18_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="61.56" shape="441.97,668.61 503.53,668.79"/>
-        <lane id=":main_interseccion_18_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="12.50" length="61.56" shape="442.22,671.80 503.79,671.98"/>
+        <lane id=":main_interseccion_18_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="61.56" shape="441.71,665.42 503.27,665.60"/>
+        <lane id=":main_interseccion_18_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="61.56" shape="441.97,668.61 503.53,668.79"/>
+        <lane id=":main_interseccion_18_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="11.11" length="61.56" shape="442.22,671.80 503.79,671.98"/>
     </edge>
 
     <edge id="E" from="3622576381" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" length="128.00" shape="605.20,677.27 506.00,684.47" distance="128.00">
-        <lane id="E_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="604.16,680.55 505.09,687.74">
+        <lane id="E_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="604.16,680.55 505.09,687.74">
             <param key="origId" value="570129394"/>
         </lane>
-        <lane id="E_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="603.89,677.36 504.83,684.56">
+        <lane id="E_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="603.89,677.36 504.83,684.56">
             <param key="origId" value="570129394"/>
         </lane>
-        <lane id="E_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="603.62,674.18 504.56,681.37">
+        <lane id="E_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="603.62,674.18 504.56,681.37">
             <param key="origId" value="570129394"/>
         </lane>
         <param key="origTo" value="2164402551"/>
@@ -193,13 +193,13 @@
         <param key="origFrom" value="3622576353"/>
     </edge>
     <edge id="N" from="J2" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" length="128.00" shape="486.09,844.34 475.85,719.50" distance="128.00">
-        <lane id="N_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="482.89,844.45 470.70,695.88">
+        <lane id="N_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="482.89,844.45 470.70,695.88">
             <param key="origId" value="570129387"/>
         </lane>
-        <lane id="N_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="486.08,844.19 473.89,695.65">
+        <lane id="N_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="486.08,844.19 473.89,695.65">
             <param key="origId" value="570129387"/>
         </lane>
-        <lane id="N_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="489.27,843.93 477.09,695.41">
+        <lane id="N_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="489.27,843.93 477.09,695.41">
             <param key="origId" value="570129387"/>
         </lane>
         <param key="origTo" value="3622576413"/>
@@ -229,13 +229,13 @@
         <param key="origFrom" value="3622576419"/>
     </edge>
     <edge id="S" from="J4" to="main_interseccion" name="Calle 13" priority="11" type="highway.secondary" spreadType="center" length="128.00" shape="486.53,533.98 491.81,624.90 493.35,650.58" distance="128.00">
-        <lane id="S_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="490.54,547.89 495.00,624.71 496.53,650.17">
+        <lane id="S_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="490.54,547.89 495.00,624.71 496.53,650.17">
             <param key="origId" value="571505150 921430816"/>
         </lane>
-        <lane id="S_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="487.35,548.07 491.81,624.90 493.34,650.38">
+        <lane id="S_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="487.35,548.07 491.81,624.90 493.34,650.38">
             <param key="origId" value="571505150 921430816"/>
         </lane>
-        <lane id="S_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="484.15,548.26 488.62,625.09 490.14,650.58">
+        <lane id="S_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="484.15,548.26 488.62,625.09 490.14,650.58">
             <param key="origId" value="571505150 921430816"/>
         </lane>
         <param key="origTo" value="2164664304"/>
@@ -289,13 +289,13 @@
         </lane>
     </edge>
     <edge id="W" from="J0" to="main_interseccion" name="Carrera 70" priority="10" type="highway.tertiary" spreadType="center" length="128.00" shape="306.09,678.03 442.15,668.60" distance="128.00">
-        <lane id="W_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="307.36,674.73 441.71,665.42">
+        <lane id="W_0" index="0" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="307.36,674.73 441.71,665.42">
             <param key="origId" value="570129391"/>
         </lane>
-        <lane id="W_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="307.58,677.93 441.97,668.61">
+        <lane id="W_1" index="1" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="307.58,677.93 441.97,668.61">
             <param key="origId" value="570129391"/>
         </lane>
-        <lane id="W_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="16.66" length="128.00" shape="307.81,681.12 442.22,671.80">
+        <lane id="W_2" index="2" disallow="tram rail_urban rail rail_electric rail_fast ship cable_car subway" speed="13.88" length="128.00" shape="307.81,681.12 442.22,671.80">
             <param key="origId" value="570129391"/>
         </lane>
         <param key="origTo" value="3622576408"/>

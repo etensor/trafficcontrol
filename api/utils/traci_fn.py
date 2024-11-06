@@ -30,10 +30,12 @@ def get_len_lanes():
 #cuantos detectors hay en el escenario
 def get_len_detectors():
     try:
-        if not traci.isLoaded():
-            initialize_traci(sumo_cfg['cfg_file'], sumo_cfg['net_file'], sumo_cfg['route_file'], sumo_cfg['add_file'])
+        # if not traci.isLoaded():
+        #     initialize_traci(sumo_cfg['cfg_file'], sumo_cfg['net_file'], sumo_cfg['route_file'], sumo_cfg['add_file'])
         detectors = traci.inductionloop.getIDList()
         return len(detectors)
+    except Exception as e:
+        return str(e)
     finally:
         close_traci()
 
@@ -76,7 +78,7 @@ def get_queue_length():
 
 
 def get_lanes_by_street():
-    lanes_by_street = {}
+    lanes_by_street = []
     lanes = traci.lane.getIDList()
     for lane in lanes:
         street = lane.split('_')[0]  # Assuming street name is part of lane ID

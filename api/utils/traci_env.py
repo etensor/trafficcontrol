@@ -34,13 +34,17 @@ def initialize_traci(
         #route_file : str = sumo_cfg['route_file'],  
         #add_file : None | str = sumo_cfg['add_file'],
         use_gui : bool = sumo_cfg['use_gui'],
-        port : int = sumo_cfg['port']):
+        port : int = sumo_cfg['port'],
+        step_length : float = None): # seconds
     
     sumo_bin = 'sumo-gui' if use_gui else 'sumo'
+
     #sumo_cmd = [sumo_bin, '-c', cfg_file, '-n', net_file, '-r', route_file]
     #if add_file:
     #    sumo_cmd.extend(['-a', add_file])
     sumo_cmd = [sumo_bin, '-c', cfg_file, '--remote-port', str(port)]
+    if step_length > 0 and step_length <= 1:
+        sumo_cmd.extend(['--step-length', str(step_length)])
 
     process = subprocess.Popen(sumo_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     #traci.start(sumo_cmd)

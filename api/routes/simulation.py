@@ -34,7 +34,7 @@ async def get_simulation_status(request: Request):
             return {
                 "status": True, 
                 "PID": app.state.sumo_pid.pid,
-                "running": app.state.pause_flag
+                "paused": app.state.pause_flag
                 }
         else:
             return {"status": False}
@@ -85,10 +85,10 @@ async def simulation_step(steps: int = 1):
 
 
 @sim_router.post("/simulation/start", tags=["Simulation"])
-async def start_simulation(request: Request, gui_mode: bool = False, time_step : float = 16.67):
+async def start_simulation(request: Request, gui_mode: bool = False, step_length: float = 1):
     try:
         app = request.app # access to FastAPI app instance -> access state variables
-        proc = traci_env.initialize_traci()
+        proc = traci_env.initialize_traci(use_gui=gui_mode, step_length=step_length)
         app.state.stop_flag = False
         app.state.pause_flag = False
         app.state.sumo_pid = proc
@@ -130,15 +130,29 @@ async def toggle_pause_simulation(request: Request):
     if not hasattr(app.state, 'sumo_pid') or not app.state.sumo_pid:
         return {"status": "No SUMO simulation is currently running."}
     
+    #using flag
+    if app.state.pause_event.is_set():
+        # app.state.status_message = "Simulation paused"
+        app.state.pause_event.clear()
+        
+        return {"message": app.state.status_message}
+    
+    else: # if paused then resume
+        app.state.pause_event.set()
+        # app.state.status_message = "Simulation running"
+        return {"message": app.state.status_message}
+
+
+
     # Toggle between pause and resume
-    if hasattr(app.state, 'pause_flag') and app.state.pause_flag:
-        # Resume the simulation
-        app.state.pause_flag = False
-        return {"status": "Simulation resumed"}
-    else:
-        # Pause the simulation
-        app.state.pause_flag = True
-        return {"status": "Simulation paused"}
+    # if hasattr(app.state, 'pause_flag') and app.state.pause_flag:
+    #     # Resume the simulation
+    #     app.state.pause_flag = False
+    #     return {"status": "Simulation resumed"}
+    # else:
+    #     # Pause the simulation
+    #     app.state.pause_flag = True
+    #     return {"status": "Simulation paused"}
 
 
 
@@ -167,15 +181,18 @@ async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
                     await ws.send_json({"status": "TraCI not connected."})
                     break
 
-                if app.state.pause_flag:
-                    if last_sent:
-                        last_sent["message"] = "Simulation paused"
-                        await ws.send_json(last_sent)
-                    await asyncio.sleep(1)  # Avoid spamming, check every second
-                    continue
-                
 
-                # Fetch subscription data
+                if not app.state.pause_event.is_set():
+                    if last_sent:
+                        app.state.status_message = "Simulation paused"
+                        last_sent["message"] = app.state.status_message
+                        await ws.send_json(last_sent)
+                    await app.state.pause_event.wait()
+                
+                    app.state.status_message = "Simulation running" #after wait
+             
+
+                # Fetch subscriptions data
                 tls_data = traffic_light_service.get_traffic_lights_data()  
                 lane_data = lane_service.get_lanes_by_street()
                 e1_data = sensors_service.get_e1_sensors_data()  
@@ -207,10 +224,11 @@ async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
                     e2_aggregated=agg_e2,
                     vehicles=veh_service.get_vehicle_count(), 
                     timestamp=time.time(),
-                    message="Running"
+                    message = app.state.status_message
                 ).model_dump()
 
                 # Send response to WebSocket
+                last_sent = response
                 await ws.send_json(response)  # Ensure model_dump is valid
                 await asyncio.sleep(time_step / 1000)
             

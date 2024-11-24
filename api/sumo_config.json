@@ -1,0 +1,5 @@
+{
+    "cfg_file": "../escenario/osm2.sumocfg",
+    "port": 8813,
+    "use_gui": false
+}

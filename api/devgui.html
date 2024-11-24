@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket JSON Viewer</title>
+    
+    <!-- Include JSONEditor CSS and JS from CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/10.1.0/jsoneditor.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/10.1.0/jsoneditor.min.js"></script>
+
+    <style>
+        #jsoneditor {
+            width: 100%;
+            height: 80vh;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>WebSocket JSON Data</h1>
+    <div id="jsoneditor"></div> <!-- JSON Editor container -->
+
+    <script>
+        // Create the JSON editor
+        const container = document.getElementById('jsoneditor');
+        const options = {};
+        const editor = new JSONEditor(container, options);
+
+        // WebSocket connection
+        const socket = new WebSocket("ws://localhost:8000/simulation/ws");
+
+        socket.onopen = function(e) {
+            console.log("[open] WebSocket connection established");
+        };
+
+        socket.onmessage = function(event) {
+            console.log(`[message] Data received from server: ${event.data}`);
+            const jsonData = JSON.parse(event.data);  // Parse JSON data
+
+            // Update the JSON editor with received data
+            editor.set(jsonData);
+        };
+
+        socket.onclose = function(event) {
+            if (event.wasClean) {
+                console.log(`[close] Connection closed cleanly, code=${event.code}, reason=${event.reason}`);
+            } else {
+                console.error('[close] Connection died');
+            }
+        };
+
+        socket.onerror = function(error) {
+            console.error(`[error] ${error.message}`);
+        };
+
+
+    </script>
+</body>
+</html>

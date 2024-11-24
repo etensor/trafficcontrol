@@ -1,8 +1,13 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import time
 import xmltodict
 import asyncio
 from typing import List, Dict
 from fastapi import APIRouter, Depends, HTTPException, Request, WebSocket, WebSocketDisconnect
+#from model.gymenv import TrafficControlEnv
 from schemas.models import WebSocketResponse
 from services import lane_service, sensors_service, traffic_light_service
 from utils.traci_env import sumo_cfg, try_reconnect_sumo
@@ -86,12 +91,16 @@ async def simulation_step(steps: int = 1):
 
 @sim_router.post("/simulation/start", tags=["Simulation"])
 async def start_simulation(request: Request, gui_mode: bool = False, step_length: float = 1):
+    global srl_env
     try:
         app = request.app # access to FastAPI app instance -> access state variables
         proc = traci_env.initialize_traci(use_gui=gui_mode, step_length=step_length)
         app.state.stop_flag = False
         app.state.pause_flag = False
         app.state.sumo_pid = proc
+
+        # SumoRL Env in control
+        srl_env = TrafficControlEnv()
         return {
             "status": f"Simulation started on port: {sumo_cfg['port']}",
             "PID": proc.pid
@@ -157,10 +166,33 @@ async def toggle_pause_simulation(request: Request):
 
 
 
+# ## Training the model API
+# @sim_router.post("/simulation/train", tags=["Simulation"])
+# async def train_model(request: Request, episodes: int = 10):
+#     global traffic_env
+#     if traffic_env is None:
+#         raise HTTPException(status_code=500, detail="Simulation environment is not initialized.")
+
+#     # Example using a basic loop to interact with the environment
+#     for episode in range(episodes):
+#         obs = traffic_env.reset()
+#         done = False
+
+#         while not done:
+#             # Take a random action for now (can replace with actual RL model)
+#             action = traffic_env.action_space.sample()
+#             obs, reward, done, _ = traffic_env.step(action)
+#             print(f"Episode: {episode + 1}, Reward: {reward}")
+
+#     return {"status": "Training complete"}
+
+
+
 ### WebSockets: real-time data streaming
 @sim_router.websocket("/simulation/ws", name="sim_websocket")
 async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
     await ws.accept()
+    global srl_env
     try:
         app = ws.app
         last_sent = None # Store last sent data
@@ -190,25 +222,32 @@ async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
                     await app.state.pause_event.wait()
                 
                     app.state.status_message = "Simulation running" #after wait
-             
 
-                # Fetch subscriptions data
-                tls_data = traffic_light_service.get_traffic_lights_data()  
-                lane_data = lane_service.get_lanes_by_street()
-                e1_data = sensors_service.get_e1_sensors_data()  
-                e2_data = sensors_service.get_e2_sensors_data()
-                agg_e2 = sensors_service.aggregate_e2_sensor_data_per_edge()
-                
-                # Check if data was properly retrieved
-                if not tls_data:
-                    await ws.send_json({"status": "No traffic light data available"})
-                    break
-                if not lane_data:
-                    await ws.send_json({"status": "No lane data available"})
-                    break
-                if not e1_data or not e2_data:
-                    await ws.send_json({"status": "No sensor data available"})
-                    break
+                if srl_env:
+                    observation = srl_env.get_observation()
+                    response = {
+                        "observation": observation,
+                        "message": app.state.status_message,
+                        "timestamp": time.time(),
+                    }
+                else:        
+                    # Fetch subscriptions data
+                    tls_data = traffic_light_service.get_traffic_lights_data()  
+                    lane_data = lane_service.get_lanes_by_street()
+                    e1_data = sensors_service.get_e1_sensors_data()  
+                    e2_data = sensors_service.get_e2_sensors_data()
+                    agg_e2 = sensors_service.aggregate_e2_sensor_data_per_edge()
+                    
+                    # Check if data was properly retrieved
+                    if not tls_data:
+                        await ws.send_json({"status": "No traffic light data available"})
+                        break
+                    if not lane_data:
+                        await ws.send_json({"status": "No lane data available"})
+                        break
+                    if not e1_data or not e2_data:
+                        await ws.send_json({"status": "No sensor data available"})
+                        break
 
                 # sensors_data = {
                 #     "induction": e1_data,  # Ensure these match SensorData model

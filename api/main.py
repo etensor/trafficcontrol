@@ -1,11 +1,14 @@
 from fastapi import FastAPI
-from routes.simulation import sim_router
-from utils.logger import logger
+from api.routes.simulation import sim_router
+from api.routes.model_api import model_router
+from api.utils.logger import logger
 from asyncio import Event
+from model.gymenv import TrafficControlEnv
 
 
 app = FastAPI()
 app.state.sumo_pid = None  # PID del proceso de SUMO
+srl_env = None
 
 
 if not hasattr(app.state, 'pause_event'):
@@ -20,6 +23,7 @@ if not hasattr(app.state, 'status_message'):
 
 #rutas 
 app.include_router(sim_router)
+app.include_router(model_router)
 
 @app.get("/")
 def app_root():

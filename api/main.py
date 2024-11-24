@@ -3,7 +3,7 @@ from api.routes.simulation import sim_router
 from api.routes.model_api import model_router
 from api.utils.logger import logger
 from asyncio import Event
-from model.gymenv import TrafficControlEnv
+from model.environment import TrafficControlEnv
 
 
 app = FastAPI()

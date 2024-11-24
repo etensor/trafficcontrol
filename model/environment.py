@@ -2,7 +2,7 @@ import gymnasium as gym
 from gymnasium import spaces
 import numpy as np
 import traci
-from rewards import reward_minimize_waiting_time, reward_minimize_queue_length, reward_maximize_speed, reward_composite
+from .rewards import reward_minimize_waiting_time, reward_minimize_queue_length, reward_maximize_speed, reward_composite
 
 
 class TrafficControlEnv(gym.Env):

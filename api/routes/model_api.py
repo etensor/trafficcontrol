@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from model.training import train_model
-from model.gymenv import TrafficControlEnv
+from model.environment import TrafficControlEnv
 from threading import Thread
 import matplotlib.pyplot as plt
 

@@ -1,5 +1,5 @@
 from stable_baselines3 import DQN, PPO
-from gymenv import TrafficControlEnv
+from model.environment import TrafficControlEnv
 from model.callbacks import RTPlotCallback
 
 

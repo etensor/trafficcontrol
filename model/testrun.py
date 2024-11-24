@@ -1,5 +1,5 @@
 import numpy as np
-from gymenv import TrafficControlEnv
+from model.environment import TrafficControlEnv
 
 # Initialize environment
 env = TrafficControlEnv()

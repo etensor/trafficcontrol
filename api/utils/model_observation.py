@@ -3,6 +3,18 @@ from sumo_rl.environment.observations import ObservationFunction
 import gymnasium as gym
 import traci
 
+
+
+def convert_numpy_to_lists(data):
+    if isinstance(data, np.ndarray):
+        return data.tolist()
+    elif isinstance(data, dict):
+        return {k: convert_numpy_to_lists(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [convert_numpy_to_lists(item) for item in data]
+    return data
+
+
 class CustomObservationFunction(ObservationFunction):
     def __init__(self, traffic_signal):
         super().__init__(traffic_signal)

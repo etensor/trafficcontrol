@@ -1,0 +1,11 @@
+gymnasium
+sumo
+traci
+stable-baselines3[extra]
+tensorboard
+python-dotenv
+tensorboard
+sumo-rl
+xmltodict
+sumolib
+fastapi[standard]

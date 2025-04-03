@@ -1,5 +1,7 @@
 import sys
 import os
+
+from model.environment import TrafficControlEnv
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import time
@@ -8,12 +10,13 @@ import asyncio
 from typing import List, Dict
 from fastapi import APIRouter, Depends, HTTPException, Request, WebSocket, WebSocketDisconnect
 #from model.gymenv import TrafficControlEnv
-from schemas.models import WebSocketResponse
-from services import lane_service, sensors_service, traffic_light_service
-from utils.traci_env import sumo_cfg, try_reconnect_sumo
-import utils.traci_env as traci_env
-from utils.logger import logger
-import services.vehicle_service as veh_service
+from api.schemas.models import WebSocketResponse
+from api.services import lane_service, sensors_service, traffic_light_service
+from api.utils.traci_env import sumo_cfg, try_reconnect_sumo
+import api.utils.traci_env as traci_env
+from api.utils.model_observation import convert_numpy_to_lists
+from api.utils.logger import logger
+import api.services.vehicle_service as veh_service
 
 
 
@@ -23,7 +26,7 @@ sim_router = APIRouter()
 @sim_router.get("/simulation/details", tags=["Simulation"])
 async def get_simulation_details():
     try:
-        with open("../escenario/osm2.sumocfg") as xmlcfg:
+        with open("../../escenario/osm2.sumocfg") as xmlcfg:
             sumo_cfg["content"] = xmltodict.parse(xmlcfg.read())
         return sumo_cfg
     except Exception as e:
@@ -90,14 +93,18 @@ async def simulation_step(steps: int = 1):
 
 
 @sim_router.post("/simulation/start", tags=["Simulation"])
-async def start_simulation(request: Request, gui_mode: bool = False, step_length: float = 1):
+async def start_simulation(request: Request, gui_mode: bool = False, step_length: float = 1, training_mode: bool = False):
     global srl_env
     try:
-        app = request.app # access to FastAPI app instance -> access state variables
-        proc = traci_env.initialize_traci(use_gui=gui_mode, step_length=step_length)
+        app = request.app
+        if training_mode:
+            srl_env = TrafficControlEnv()
+            app.state.training_mode = True
+        else:
+            proc = traci_env.initialize_traci(use_gui=gui_mode, step_length=step_length)
+            app.state.sumo_pid = proc
         app.state.stop_flag = False
         app.state.pause_flag = False
-        app.state.sumo_pid = proc
 
         # SumoRL Env in control
         srl_env = TrafficControlEnv()
@@ -118,15 +125,27 @@ async def run_simulation(request: Request , timestep: float = 16.7):
 
     app.state.stop_flag = False
     app.state.pause_flag = False
-    while True:
-        if app.state.stop_flag:
-            break
 
-        if traci_env.is_traci_loaded():
-            traci_env.simulationStep()
-            await asyncio.sleep(timestep / 1000) 
-        else:
-            break
+    proc = traci_env.initialize_traci(use_gui=True, step_length=20)
+    srl_env = TrafficControlEnv()
+
+
+    try:
+        while not app.state.stop_flag:
+            if not app.state.pause_flag:
+                if traci_env.is_traci_loaded():
+                    traci_env.simulationStep()
+                    await asyncio.sleep(timestep/ 1000)
+                else:
+                    await traci_env.try_reconnect_sumo() # -> limit to N attempts maybe
+            else:
+                await asyncio.sleep(0.1) # cpu load reduction at pause
+    except Exception as e:
+        logger.error(f"Error in simulation/run: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error in simulation/run: {str(e)}")
+        
+    finally:
+        return {"status": "Simulation run loop completed.","completed": True } # quiza verbose para el cliente?
 
 
 
@@ -195,9 +214,8 @@ async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
     global srl_env
     try:
         app = ws.app
-        last_sent = None # Store last sent data
-        
-        # Validate SUMO and TraCI status
+        last_sent = None
+
         if not hasattr(app.state, 'sumo_pid') or not app.state.sumo_pid:
             if not try_reconnect_sumo():
                 await ws.send_json({"status": "No SUMO process found, unable to reconnect."})
@@ -213,64 +231,55 @@ async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
                     await ws.send_json({"status": "TraCI not connected."})
                     break
 
-
+                # Handle pause state
                 if not app.state.pause_event.is_set():
                     if last_sent:
                         app.state.status_message = "Simulation paused"
                         last_sent["message"] = app.state.status_message
                         await ws.send_json(last_sent)
                     await app.state.pause_event.wait()
-                
-                    app.state.status_message = "Simulation running" #after wait
+                    app.state.status_message = "Simulation running"
 
+                # Build response based on environment mode
                 if srl_env:
+                    # RL Environment Mode
                     observation = srl_env.get_observation()
-                    response = {
-                        "observation": observation,
-                        "message": app.state.status_message,
-                        "timestamp": time.time(),
-                    }
-                else:        
-                    # Fetch subscriptions data
-                    tls_data = traffic_light_service.get_traffic_lights_data()  
+                    observation = convert_numpy_to_lists(observation)
+                    response = WebSocketResponse(
+                        observation=observation,
+                        message=app.state.status_message,
+                        timestamp=time.time(),
+                        vehicles=veh_service.get_vehicle_count()
+                    ).model_dump()
+                else:
+                    # Regular Data Collection Mode
+                    tls_data = traffic_light_service.get_traffic_lights_data()
                     lane_data = lane_service.get_lanes_by_street()
-                    e1_data = sensors_service.get_e1_sensors_data()  
+                    e1_data = sensors_service.get_e1_sensors_data()
                     e2_data = sensors_service.get_e2_sensors_data()
                     agg_e2 = sensors_service.aggregate_e2_sensor_data_per_edge()
-                    
-                    # Check if data was properly retrieved
-                    if not tls_data:
-                        await ws.send_json({"status": "No traffic light data available"})
-                        break
-                    if not lane_data:
-                        await ws.send_json({"status": "No lane data available"})
-                        break
-                    if not e1_data or not e2_data:
-                        await ws.send_json({"status": "No sensor data available"})
+
+                    # Validate data
+                    if not all([tls_data, lane_data, e1_data, e2_data]):
+                        await ws.send_json({"status": "Missing subscription data"})
                         break
 
-                # sensors_data = {
-                #     "induction": e1_data,  # Ensure these match SensorData model
-                #     "lanearea": e2_data
-                # }
+                    response = WebSocketResponse(
+                        traffic_lights=tls_data,
+                        lanes=lane_data,
+                        e1_sensors=e1_data,
+                        e2_sensors=e2_data,
+                        e2_aggregated=agg_e2,
+                        vehicles=veh_service.get_vehicle_count(),
+                        timestamp=time.time(),
+                        message=app.state.status_message
+                    ).model_dump()
 
-                # Construct response object
-                response = WebSocketResponse(
-                    traffic_lights=tls_data,
-                    lanes=lane_data,
-                    e1_sensors=e1_data,
-                    e2_sensors=e2_data,
-                    e2_aggregated=agg_e2,
-                    vehicles=veh_service.get_vehicle_count(), 
-                    timestamp=time.time(),
-                    message = app.state.status_message
-                ).model_dump()
-
-                # Send response to WebSocket
+                # Send response
                 last_sent = response
-                await ws.send_json(response)  # Ensure model_dump is valid
+                await ws.send_json(response)
                 await asyncio.sleep(time_step / 1000)
-            
+
             except Exception as e:
                 print(f"Error during data transmission: {e}")
                 await ws.send_json({"status": "Error", "message": str(e)})
@@ -281,7 +290,4 @@ async def websocket_simulation_ctrl(ws: WebSocket, time_step: float = 16.67):
         logger.error(f"Error: {e}")
         await ws.send_json({"status": "Error", "message": str(e)})
     finally:
-        try:
-            await ws.close()  # Close WebSocket connection
-        except Exception:
-            logger.error("Error closing WebSocket.")
+        await ws.close()

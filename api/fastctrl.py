@@ -37,7 +37,7 @@ def get_subscription_results():
     return e1_data, e2_data, traffic_light_data
 
 # Initialize SUMO
-initialize_sumo("../escenario/osm2.sumocfg", use_gui=True)
+initialize_sumo("./escenario/osm2.sumocfg", use_gui=True)
 subscribe_e1_e2_sensors()
 subscribe_traffic_lights()
 

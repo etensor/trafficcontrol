@@ -8,7 +8,7 @@ from services.sensors_service import subscribe_e1_sensors, subscribe_e2_sensors
 from services.traffic_light_service import subscribe_traffic_lights
 
 
-sumo_cfg = json.load(open('./api/sumo_config.json'))
+sumo_cfg = json.load(open('./sumo_config.json'))
 
 # SUMO_HOME must exist as env var 
 if 'SUMO_HOME' in os.environ:

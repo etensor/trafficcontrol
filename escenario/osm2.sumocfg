@@ -11,9 +11,13 @@
         <additional-files value="osm.poly.add.xml"/>
     </input>
 
-    <time>
+    <!-- <time>
         <step-length value="0.10"/>
-    </time>
+    </time> -->
+
+    <!-- <output>
+        
+    </output> -->
 
     <processing>
         <ignore-route-errors value="true"/>
@@ -27,7 +31,7 @@
     <report>
         <verbose value="true"/>
         <duration-log.statistics value="true"/>
-        <no-step-log value="true"/>
+        <no-step-log value="false"/>
     </report>
 
     <gui_only>

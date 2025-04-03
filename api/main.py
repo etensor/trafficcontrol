@@ -3,11 +3,12 @@ from api.routes.simulation import sim_router
 from api.routes.model_api import model_router
 from api.utils.logger import logger
 from asyncio import Event
-from model.environment import TrafficControlEnv
+#from model.environment import TrafficControlEnv
 
 
 app = FastAPI()
 app.state.sumo_pid = None  # PID del proceso de SUMO
+app.state.training_mode = False
 srl_env = None
 
 

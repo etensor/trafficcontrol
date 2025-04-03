@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Dict, Optional
 
-
 class TrafficLightData(BaseModel):
     id: str
     current_phase: str | int | None = None# Phase -> "rrrGGGrrrGGG" | len(phase) R uniq(states)
@@ -84,15 +83,14 @@ class VehicleContextSubscriptionData(BaseModel):
 
 # ws 
 class WebSocketResponse(BaseModel):
-    traffic_lights: Dict[str, TrafficLightData]
-    # edges: Dict[str, EdgeData]
-    lanes: Dict[str,List[str]]
-    e1_sensors: Dict[str, InductionLoopData]
-    e2_sensors: Dict[str, LaneAreaData]
-    e2_aggregated: Dict[str, EdgeSensorData]
-    #vehicles: Dict[str, VehicleData]
+    traffic_lights: Optional[Dict[str, TrafficLightData | Dict]] = None
+    lanes: Optional[Dict[str, List[str]]] = None
+    e1_sensors: Optional[Dict[str, InductionLoopData]] = None
+    e2_sensors: Optional[Dict[str, LaneAreaData]] = None
+    e2_aggregated: Optional[Dict[str, EdgeSensorData]] = None
     vehicles: int
     timestamp: float
+    observation: Optional[Dict] = None
     message: Optional[str] = None
 
 

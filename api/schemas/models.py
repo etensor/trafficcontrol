@@ -1,4 +1,6 @@
-from pydantic import BaseModel
+import datetime
+import numpy as np
+from pydantic import BaseModel, ConfigDict, Field
 from typing import List, Dict, Optional
 
 class TrafficLightData(BaseModel):
@@ -83,7 +85,16 @@ class VehicleContextSubscriptionData(BaseModel):
 
 # ws 
 class WebSocketResponse(BaseModel):
-    traffic_lights: Optional[Dict[str, TrafficLightData | Dict]] = None
+    traffic_lights: Optional[Dict[str, dict]] = None
+    
+    # Add Pydantic config for JSON serialization
+    model_config = ConfigDict(
+        json_encoders={
+            np.ndarray: lambda v: v.tolist(),
+            datetime.datetime: lambda v: v.isoformat()
+        }
+    )
+
     lanes: Optional[Dict[str, List[str]]] = None
     e1_sensors: Optional[Dict[str, InductionLoopData]] = None
     e2_sensors: Optional[Dict[str, LaneAreaData]] = None
@@ -92,5 +103,18 @@ class WebSocketResponse(BaseModel):
     timestamp: float
     observation: Optional[Dict] = None
     message: Optional[str] = None
+
+
+
+# config
+class SimulationStartConfig(BaseModel):
+    gui_mode: bool = Field(False, description="Launch SUMO with GUI visualization")
+    step_length: float = Field(1.0, gt=1, le=500, 
+                            description="Simulation step length in seconds (1-500)") # unsure of this
+    training_mode: bool = Field(False, description="Initialize RL training environment")
+
+class SimulationRunConfig(BaseModel):
+    timestep: float = Field(16.7, gt=5, le=5000.0, 
+                          description="Time between steps in milliseconds (5-5000)") # of this too
 
 

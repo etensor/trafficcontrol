@@ -1,4 +1,5 @@
 import numpy as np
+from pydantic import BaseModel
 from sumo_rl.environment.observations import ObservationFunction
 import gymnasium as gym
 import traci
@@ -8,10 +9,14 @@ import traci
 def convert_numpy_to_lists(data):
     if isinstance(data, np.ndarray):
         return data.tolist()
+    elif isinstance(data, np.generic):
+        return data.item()
     elif isinstance(data, dict):
         return {k: convert_numpy_to_lists(v) for k, v in data.items()}
     elif isinstance(data, list):
         return [convert_numpy_to_lists(item) for item in data]
+    elif isinstance(data, BaseModel):  # Handle Pydantic models
+        return convert_numpy_to_lists(data.model_dump())
     return data
 
 

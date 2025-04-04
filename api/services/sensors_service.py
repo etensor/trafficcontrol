@@ -31,21 +31,33 @@ def subscribe_e2_sensors():
 
 
 
-def get_e1_sensors_data():
-    e1dict = {}
-    for e1_id in traci.inductionloop.getIDList():
-        results = traci.inductionloop.getSubscriptionResults(e1_id)
-        if results:
-            e1dict[e1_id] = InductionLoopData(
-                id = e1_id,
-                vehicle_count = results[traci.constants.LAST_STEP_VEHICLE_NUMBER],
-                occupancy = results[traci.constants.LAST_STEP_OCCUPANCY],
-                mean_speed = results[traci.constants.LAST_STEP_MEAN_SPEED]
-            )
-        else:
-            print(f"No subscription result for E1_{e1_id}")
+# def get_e1_sensors_data():
+#     e1dict = {}
+#     for e1_id in traci.inductionloop.getIDList():
+#         results = traci.inductionloop.getSubscriptionResults(e1_id)
+#         if results:
+#             e1dict[e1_id] = InductionLoopData(
+#                 id = e1_id,
+#                 vehicle_count = results[traci.constants.LAST_STEP_VEHICLE_NUMBER],
+#                 occupancy = results[traci.constants.LAST_STEP_OCCUPANCY],
+#                 mean_speed = results[traci.constants.LAST_STEP_MEAN_SPEED]
+#             )
+#         else:
+#             print(f"No subscription result for E1_{e1_id}")
 
-    return e1dict
+#     return e1dict
+
+
+def get_e1_sensors_data() -> Dict[str, dict]:
+    return {
+        sensor_id: InductionLoopData(
+            id=sensor_id,
+            vehicle_count=traci.inductionloop.getLastStepVehicleNumber(sensor_id),
+            occupancy=traci.inductionloop.getLastStepOccupancy(sensor_id),
+            mean_speed=traci.inductionloop.getLastStepMeanSpeed(sensor_id)
+        ).model_dump()
+        for sensor_id in traci.inductionloop.getIDList()
+    }
 
 
 

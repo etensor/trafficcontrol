@@ -1,15 +1,34 @@
 from fastapi import FastAPI
-from api.routes.simulation import sim_router
-from api.routes.model_api import model_router
-from api.utils.logger import logger
+from .routes.simulation import sim_router
+from .routes.model_api import model_router
+from .utils.logger import logger
 from asyncio import Event
 #from model.environment import TrafficControlEnv
 
 
-app = FastAPI()
+app = FastAPI(
+    title="RL Traffic Control SUMO API",
+    description="Real-time traffic simulation control system para la tesis",
+    openapi_tags=[
+        {
+            "name": "Simulation",
+            "description": "Core simulation control endpoints"
+        },
+        {
+            "name": "Monitoring",
+            "description": "Real-time data streaming endpoints"
+        },
+        {
+            "name": "Configuration",
+            "description": "Model and environment configuration endpoints"
+        }
+    ]
+)
+
 app.state.sumo_pid = None  # PID del proceso de SUMO
 app.state.training_mode = False
-srl_env = None
+#srl_env = None // removing this thing <- global var nuh uh
+app.state.rl_env = None # Initialize the environment <- global var nuh uh
 
 
 if not hasattr(app.state, 'pause_event'):

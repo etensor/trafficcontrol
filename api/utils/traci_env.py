@@ -4,13 +4,23 @@ import subprocess
 import json
 import traci
 
+from pathlib import Path
+
+# Get the directory of this file
+current_dir = Path(__file__).parent.parent
+
+# Load config relative to this file's location
+sumo_cfg_path = current_dir / "sumo_config.json"
+sumo_cfg = json.loads(sumo_cfg_path.read_text())
+
+
 from services.sensors_service import subscribe_e1_sensors, subscribe_e2_sensors
 from services.traffic_light_service import subscribe_traffic_lights
 
 
-sumo_cfg = json.load(open('./sumo_config.json'))
+#sumo_cfg = json.load(open('./sumo_config.json'))
 
-# SUMO_HOME must exist as env var 
+# SUMO_HOME must exist as env var  # this refers to the sumo project repo(?)
 if 'SUMO_HOME' in os.environ:
     tools = os.path.join(os.environ['SUMO_HOME'], 'tools')
     sys.path.append(tools)

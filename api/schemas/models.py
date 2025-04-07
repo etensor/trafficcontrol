@@ -7,6 +7,7 @@ class TrafficLightData(BaseModel):
     id: str
     current_phase: str | int | None = None# Phase -> "rrrGGGrrrGGG" | len(phase) R uniq(states)
     red_yellow_green_state: str
+    phase_name: Optional[str] = None
     phase_duration: Optional[float] = None  # Time remaining in the current phase
     spent_duration: Optional[float] = None  # Time spent in current phase
     next_switch: Optional[float] = None  # Time for the next switch
@@ -86,23 +87,26 @@ class VehicleContextSubscriptionData(BaseModel):
 # ws 
 class WebSocketResponse(BaseModel):
     traffic_lights: Optional[Dict[str, dict]] = None
-    
-    # Add Pydantic config for JSON serialization
-    model_config = ConfigDict(
-        json_encoders={
-            np.ndarray: lambda v: v.tolist(),
-            datetime.datetime: lambda v: v.isoformat()
-        }
-    )
-
     lanes: Optional[Dict[str, List[str]]] = None
-    e1_sensors: Optional[Dict[str, InductionLoopData]] = None
-    e2_sensors: Optional[Dict[str, LaneAreaData]] = None
-    e2_aggregated: Optional[Dict[str, EdgeSensorData]] = None
+    e1_sensors: Optional[Dict[str, dict]] = None
+    e2_sensors: Optional[Dict[str, dict]] = None
+    e2_aggregated: Optional[Dict[str, dict]] = None
     vehicles: int
     timestamp: float
-    observation: Optional[Dict] = None
+    observation: Optional[dict] = None
     message: Optional[str] = None
+
+    model_config = ConfigDict(
+        json_encoders={
+            # Handle all numpy types and custom objects 
+            # this is because pydantic does not support numpy types
+            np.ndarray: lambda v: v.tolist(),
+            np.float32: lambda v: float(v),
+            np.float64: lambda v: float(v),
+            np.int32: lambda v: int(v),
+            np.int64: lambda v: int(v)
+        }
+    )
 
 
 

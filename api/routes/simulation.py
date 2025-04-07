@@ -10,7 +10,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import time
 import xmltodict
 import asyncio
-from typing import List, Dict, Annotated
+from typing import List, Dict, Annotated, Optional
 from fastapi import APIRouter, Depends, HTTPException, Request, WebSocket, WebSocketDisconnect, Query
 #from model.gymenv import TrafficControlEnv
 from api.schemas.models import WebSocketResponse, SimulationStartConfig, SimulationRunConfig
@@ -45,7 +45,7 @@ async def get_simulation_status(request: Request):
             return {
                 "status": True, 
                 "PID": app.state.sumo_pid.pid,
-                "paused": app.state.pause_flag
+                "paused": app.state.pause_event
                 }
         else:
             return {"status": False}
@@ -58,7 +58,7 @@ async def get_simulation_status(request: Request):
 async def stop_simulation(request: Request):
     try:
         app = request.app
-        app.state.stop_flag = True # set flag
+        app.state.pause_event = True # set flag
         try:
             traci_env.traci.close() # attempt to close traci connection
             await asyncio.sleep(1) # wait for it to stop gracefully
@@ -66,8 +66,10 @@ async def stop_simulation(request: Request):
             if app.state.sumo_pid:
                 app.state.sumo_pid.terminate()
                 # X traci_env.close_traci() # -> traci.terminate
+                app.state.status_message = "Simulation stopped"
                 app.state.sumo_pid = None
             else:
+                app.state.status_message = "No active simulation to stop"
                 return {"status": "Simulation not running"}
     
         except Exception as e:
@@ -76,6 +78,7 @@ async def stop_simulation(request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error stopping simulation: {e}")
     finally:
+        app.state.status_message = "No active simulation"
         return {"status": "Simulation stopped successfully"}
    
 
@@ -89,6 +92,7 @@ async def stop_simulation(request: Request):
     response_description="Confirmation of steps executed"
 )
 async def simulation_step(
+    request: Request,
     steps: Annotated[
         int,
         Query(
@@ -107,16 +111,22 @@ async def simulation_step(
     - Status message with step count execution confirmation
     """
     try:
-        if traci_env.is_traci_loaded():
-            for _ in range(steps):
+        app = request.app
+        if not traci_env.is_traci_loaded():
+            return {"status": "TraCI not connected"}
+        
+        executed = 0
+        for _ in range(steps):
+            if app.state.pause_event:
                 traci_env.simulationStep()
-            return {
-                "status": f"Advanced {steps} steps",
-                "steps_executed": steps
-            }
-        return {"status": "TraCI not connected"}
+                executed += 1
+            else:
+                await asyncio.sleep(0.1)
+        
+        return {"status": f"Advanced {executed}/{steps} steps"}
+    
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(500, detail=str(e))
 
 
 
@@ -131,36 +141,43 @@ async def simulation_step(
 )
 async def start_simulation(
     request: Request,
-    config: SimulationStartConfig = Depends() # Depends means it will be injected
+    use_gui: bool = Query(False, description="Enable visual interface"),
+    step_length: float = Query(1.0, description="Simulation step duration in seconds"),
+    num_steps: int = Query(0, description="Immediate steps to execute (headless only)"),
+    autostart: bool = Query(True, description="Auto-start GUI simulation"),
+    gui_delay: int = Query(20, description="GUI refresh delay in milliseconds")
 ):
-    """
-    Initialize SUMO simulation instance with optional RL training environment.
-    
-    - **gui_mode**: Visual interface for debugging
-    - **step_length**: Simulation time precision
-    - **training_mode**: Enable reinforcement learning control
-    """
+    """Initialize SUMO simulation instance"""
     try:
         app = request.app
-        if config.training_mode:
-            if not app.state.rl_env:
-                app.state.rl_env = TrafficControlEnv()
-            app.state.training_mode = True
-            return {"status": "RL training environment initialized"}
-        
+
+        app.state.status_message = "Simulation starting..."
+
         proc = traci_env.initialize_traci(
-            use_gui=config.gui_mode,
-            step_length=config.step_length
+            use_gui=use_gui,
+            step_length=step_length,
+            autostart=autostart,
+            gui_delay=gui_delay,
+            num_steps=num_steps
         )
         app.state.sumo_pid = proc
+        app.state.status_message = f"Simulation started on port {str(sumo_cfg['port'])} with PID {proc.pid}"
+        
         return {
-            "status": f"Simulation started on port: {sumo_cfg['port']}",
-            "PID": proc.pid
+            "status": f"Simulation {'GUI' if use_gui else 'headless'} started",
+            "steps_executed": num_steps,
+            "port": sumo_cfg['port'],
+            "message": app.state.status_message
         }
-    except Exception as e:
-        logger.error(f"Startup failed: {str(e)}")
-        raise HTTPException(500, detail="Simulation initialization failed")
-
+    
+    except FileNotFoundError as e:
+        logger.critical(f"Config file missing: {str(e)}")
+        app.state.status_message = f"Startup failed, {str(e)}"
+        raise HTTPException(500, detail="Simulation configuration error")
+    except traci.FatalTraCIError as e:
+        logger.error(f"TraCI failed: {str(e)}")
+        app.state.status_message = f"Startup failed, {str(e)}"
+        raise HTTPException(500, detail="TraCI connection failed")
 
 
 
@@ -175,26 +192,32 @@ async def start_simulation(
 )
 async def run_simulation(
     request: Request,
-    config: SimulationRunConfig = Depends()
+    timestep: float = Query(100.0, description="Update interval in milliseconds")
 ):
-    """Run continuous simulation with automatic stepping"""
+    """Run continuous simulation with flow control"""
     app = request.app
-    app.state.stop_flag = False
-    app.state.pause_flag = False
-
+    app.state.pause_event = False
+    app.state.status_message = "Simulation running"
+    
     try:
-        start = time.time() 
-        while not app.state.stop_flag:
-            if not app.state.pause_flag and traci_env.is_traci_loaded():
-                traci_env.simulationStep()
-                await asyncio.sleep(config.timestep / 1000)
+        while not app.state.pause_event:
+            start = time.time()
+            
+            if not app.state.pause_event:
+                traci.simulationStep()
+                
+                # Maintain real-time pacing
+                elapsed = (time.time() - start) * 1000  # ms
+                sleep_time = max(0, timestep - elapsed) / 1000
+                await asyncio.sleep(sleep_time)
             else:
                 await asyncio.sleep(0.1)
                 
-        return {"status": "Simulation completed", "duration": time.time() - start}
+        return {"status": "Simulation stopped"}
+    
     except traci.TraCIException as e:
-        logger.critical(f"TRACI failure: {str(e)}")
-        raise HTTPException(500, detail="Connection to SUMO lost")
+        logger.error(f"TraCI error: {str(e)}")
+        raise HTTPException(500, detail="Lost connection to SUMO")
     except Exception as e:
         logger.error(f"Runtime error: {str(e)}")
         raise HTTPException(500, detail="Simulation execution failed")
@@ -202,46 +225,61 @@ async def run_simulation(
 
 
 
+
 # pause and resume actions
 @sim_router.post("/simulation/toggle_pause", tags=["Simulation"])
 async def toggle_pause_simulation(request: Request):
-    app = request.app  # Access FastAPI app instance
-    
-    # Check if a SUMO simulation is running
-    if not hasattr(app.state, 'sumo_pid') or not app.state.sumo_pid:
-        return {"status": "No SUMO simulation is currently running."}
-    
-    #using flag
-    if app.state.pause_event.is_set():
-        # app.state.status_message = "Simulation paused"
-        app.state.pause_event.clear()
-        
-        return {"message": app.state.status_message}
-    
-    else: # if paused then resume
-        app.state.pause_event.set()
-        # app.state.status_message = "Simulation running"
-        return {"message": app.state.status_message}
+    app = request.app
 
+    if not hasattr(app.state, "sumo_conn"):
+        return {"status": "Simulation not running"}
+    
+    # Toggle pause state
+    app.state.paused = not getattr(app.state, "paused", False)
+    
+    # Immediate TraCI pause control
+    if app.state.paused:
+        traci.simulation.setStopTime(traci.simulation.getTime() + 1)
+    else:
+        traci.simulation.setStopTime(-1)  # Resume
+    
+    return {"paused": app.state.paused}
 
+    # if not hasattr(app.state, 'sumo_pid') or not app.state.sumo_pid:
+    #     return {"status": "No active simulation"}
+    
+    # # Toggle the existing pause_event flag logic
+    # if app.state.pause_event.is_set():
+    #     app.state.pause_event.clear()  # Resume simulation
+    #     app.state.status_message = "Simulation running"
+    # else:
+    #     app.state.pause_event.set()  # Pause simulation
+    #     app.state.status_message = "Simulation paused"
+    
+    # return {"message": app.state.status_message}
 
     # Toggle between pause and resume
-    # if hasattr(app.state, 'pause_flag') and app.state.pause_flag:
+    # if hasattr(app.state, 'pause_event') and app.state.pause_event:
     #     # Resume the simulation
-    #     app.state.pause_flag = False
+    #     app.state.pause_event = False
     #     return {"status": "Simulation resumed"}
     # else:
     #     # Pause the simulation
-    #     app.state.pause_flag = True
+    #     app.state.pause_event = True
     #     return {"status": "Simulation paused"}
 
 
-@sim_router.get("/test/tls", tags=["Debug"])
+
+@sim_router.get("/simulation/tls_test", tags=["Simulation", "Test"])
 async def test_tls_data():
     data = traffic_light_service.get_traffic_lights_data()
+    data_aggregate = sensors_service.aggregate_e2_sensor_data_per_edge(),
+    sensors_ids = sensors_service.get_sensor_ids()
     return {
         "raw": data,
-        "json_ready": json.dumps(data, default=str)
+        "json_ready": json.dumps(data, default=str),
+        "raw_e2_aggregate": data_aggregate,
+        "sensors_ids": sensors_ids
     }
 
 
@@ -269,80 +307,171 @@ async def test_tls_data():
 
 ### WebSockets: real-time data streaming
 @sim_router.websocket("/simulation/ws", name="sim_websocket")
-async def websocket_simulation_ctrl(
-    ws: WebSocket,
-    time_step: float = Query(16.67, gt=5.0, le=1000.0,
-                           description="WebSocket update interval in ms")
-):
+async def websocket_simulation_ctrl(ws: WebSocket):
     """
-    Real-time monitoring channel with two modes:
-    
-    - **Training Mode**: RL observation space data
-    - **Simulation Mode**: Live traffic metrics
-    
-    Message format adheres to WebSocketResponse model
+    Real-time simulation data channel with dual modes:
+    - Training Mode: RL observation space + metrics
+    - Simulation Mode: Full traffic system metrics
     """
     await ws.accept()
+    app = ws.app
+    last_step = -1
+    
     try:
-        app = ws.app
-        validate_simulation_state(app)
-        
         while True:
-            try:
-                response = await form_ws_response(app)
-                await ws.send_json(response)
-                await asyncio.sleep(time_step / 1000)
-                
-            except WebSocketDisconnect:
-                logger.info("Client disconnected")
+            current_step = traci.simulation.getTime()
+            # Check simulation status
+            if not app.state.sumo_pid or not traci.isLoaded():
+                await ws.send_json({"error": "Simulation not running"})
                 break
-            except Exception as e:
-                logger.error(f"WS transmission error: {str(e)}")
-                await ws.send_json({"error": str(e)})
+            
+            # Get current simulation time
+            current_time = traci.simulation.getTime()
+
+            if current_step != last_step or getattr(app.state, "paused", False):
+                response = await _build_websocket_response(app)
+                response["paused"] = getattr(app.state, "paused", False)
+                await ws.send_json(response)
+                last_step = current_step
+            
+            await asyncio.sleep(0.01)
+
+            # if app.state.pause_event.is_set():
+            #     await asyncio.sleep(0.1)
+            
+            # # Only send updates when simulation progresses or pause state changes
+            # if current_time != last_step or app.state.pause_event.is_set():
+            #     response = await _build_websocket_response(app)
+            #     response["paused"] = app.state.pause_event.is_set()
+            #     await ws.send_json(response)
+            #     last_step = current_time
                 
+            # # Non-blocking sleep to maintain real-time updates
+            # await asyncio.sleep(0)  # Yield control to event loop
+
+    except WebSocketDisconnect:
+        logger.info("Client disconnected normally")
+    except Exception as e:
+        logger.error(f"WebSocket error: {str(e)}")
     finally:
-        await handle_ws_cleanup(app, ws)
+        await ws.close()
+
+
+    #     _validate_simulation_state(app)
+    #     start_time = time.time()
+    #     update_interval = time_step / 1000
+        
+    #     while True:
+    #         try:
+    #             # Respect pause state
+    #             if not app.state.pause_event:
+    #                 await asyncio.sleep(0.1)
+    #                 continue
+                
+    #             # Throttle updates
+    #             elapsed = time.time() - start_time
+    #             if elapsed < update_interval:
+    #                 await asyncio.sleep(update_interval - elapsed)
+                
+    #             # Get fresh data
+    #             response = await _build_websocket_response(app)
+    #             await ws.send_json(response)
+    #             start_time = time.time()
+                
+    #         except WebSocketDisconnect:
+    #             logger.info("Client disconnected")
+    #             break
+                
+    # finally:
+    #     await _cleanup_websocket(app, ws)
 
 
 
-
-def validate_simulation_state(app):
+def _validate_simulation_state(app):
     if not app.state.sumo_pid or not traci_env.is_traci_loaded():
-        raise HTTPException(400, detail="Simulation not initialized")
+        app.state.status_message = "Simulation not initialized"
+        raise HTTPException(
+            status_code=400,
+            detail=app.state.status_message
+        )
 
 
-
-async def form_ws_response(app) -> dict:
-    base_data = {
-        "timestamp": time.time(),
+async def _build_websocket_response(app) -> dict:
+    base_payload = {
+        "timestamp": round(time.time(), 3),
         "vehicles": veh_service.get_vehicle_count(),
         "message": app.state.status_message
     }
     
     if app.state.training_mode and app.state.rl_env:
-        obs = convert_numpy_to_lists(app.state.rl_env.get_observation())
-        response_model = WebSocketResponse(
-            observation=obs,
-            **base_data
-        )
-    else:
-        response_model = WebSocketResponse(
-            traffic_lights=traffic_light_service.get_traffic_lights_data(),
-            lanes=lane_service.get_lanes_by_street(),
-            e1_sensors=sensors_service.get_e1_sensors_data(),
-            e2_sensors=sensors_service.get_e2_sensors_data(),
-            e2_aggregated=sensors_service.aggregate_e2_sensor_data_per_edge(),
-            **base_data
-        )
+        return WebSocketResponse(
+            observation=convert_numpy_to_lists(
+                app.state.rl_env.get_observation()
+            ),
+            **base_payload
+        ).model_dump()
     
-    return response_model.model_dump()
+    return WebSocketResponse(
+        traffic_lights=traffic_light_service.get_traffic_lights_data(),
+        lanes=lane_service.get_lanes_by_street(),
+        e1_sensors=sensors_service.get_e1_sensors_data(),
+        e2_sensors=sensors_service.get_e2_sensors_data(),
+        e2_aggregated=sensors_service.aggregate_e2_sensor_data_per_edge(),
+        **base_payload
+    ).model_dump()
 
 
-
-async def handle_ws_cleanup(app, ws):
+async def _cleanup_websocket(app, ws):
+    """Graceful websocket disconnection"""
     try:
         await ws.close()
+        app.state.ws_connections.discard(ws)
+        logger.debug("WebSocket connection closed cleanly")
     except RuntimeError as e:
         logger.warning(f"Cleanup error: {str(e)}")
-    finally:
-        app.state.ws_connections.discard(ws)
+    except Exception as e:
+        logger.error(f"Unexpected cleanup error: {str(e)}")
+
+
+
+### Trafic Lights Control
+@sim_router.post("/trafficlights/{tls_id}/phase", tags=["Traffic Lights"])
+async def set_traffic_phase(
+    tls_id: str,
+    phase_index: int = Query(..., ge=0, le=7, example=0),
+    duration: Optional[int] = Query(None, gt=0)
+):
+    try:
+        # Validate traffic light exists
+        if tls_id not in traci.trafficlight.getIDList():
+            raise HTTPException(404, "Traffic light not found")
+            
+        # Get available phases
+        program = traci.trafficlight.getAllProgramLogics(tls_id)[0]
+        if phase_index >= len(program.phases):
+            raise HTTPException(400, "Invalid phase index")
+        
+        # Set phase with optional duration
+        traci.trafficlight.setPhase(tls_id, phase_index)
+        if duration:
+            traci.trafficlight.setPhaseDuration(tls_id, duration)
+            
+        return {
+            "status": f"Phase changed to {phase_index}",
+            "new_phase": program.phases[phase_index].state,
+            "phase_name": traffic_light_service.PHASE_DIRECTIONS.get(phase_index, "Unknown")
+        }
+        
+    except traci.TraCIException as e:
+        raise HTTPException(500, f"TraCI error: {str(e)}")
+    
+
+
+@sim_router.get("/lanes/metrics", response_model=Dict[str, lane_service.DirectionMetrics])
+async def get_lane_metrics():
+    return lane_service.get_detailed_directional_metrics()
+
+
+@sim_router.get("/trafficlights/{tls_id}/phases")
+async def get_phase_information(tls_id: str):
+    return traffic_light_service.get_phase_info(tls_id)

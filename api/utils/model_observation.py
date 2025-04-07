@@ -7,15 +7,15 @@ import traci
 
 
 def convert_numpy_to_lists(data):
+    if isinstance(data, np.generic):
+        return data.item()
     if isinstance(data, np.ndarray):
         return data.tolist()
-    elif isinstance(data, np.generic):
-        return data.item()
-    elif isinstance(data, dict):
+    if isinstance(data, dict):
         return {k: convert_numpy_to_lists(v) for k, v in data.items()}
-    elif isinstance(data, list):
+    if isinstance(data, list):
         return [convert_numpy_to_lists(item) for item in data]
-    elif isinstance(data, BaseModel):  # Handle Pydantic models
+    if isinstance(data, BaseModel):
         return convert_numpy_to_lists(data.model_dump())
     return data
 

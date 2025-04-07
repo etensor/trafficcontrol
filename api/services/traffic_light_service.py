@@ -24,6 +24,13 @@ def subscribe_traffic_lights():
 
 
 
+PHASE_DIRECTIONS = {
+    0: "Norte - Sur",
+    2: "Este - Oeste",
+    4: "Norte - Sur Diagonal",
+    6: "Este - Oeste Diagonal"
+}
+
 
 def get_traffic_lights_data() -> Dict[str, dict]:
     tls_response = {}
@@ -31,6 +38,7 @@ def get_traffic_lights_data() -> Dict[str, dict]:
     for tls_id in traci.trafficlight.getIDList():
         try:
             tls_data = traci.trafficlight.getSubscriptionResults(tls_id)
+            phase_idx = tls_data.get(traci.constants.TL_CURRENT_PHASE, 0)
             if not tls_data:
                 continue
 
@@ -39,10 +47,11 @@ def get_traffic_lights_data() -> Dict[str, dict]:
                 id=tls_id,
                 red_yellow_green_state=tls_data.get(traci.constants.TL_RED_YELLOW_GREEN_STATE, "unknown"),
                 phase_duration=tls_data.get(traci.constants.TL_PHASE_DURATION, 0.0),
-                current_phase=tls_data.get(traci.constants.TL_CURRENT_PHASE, -1),
+                current_phase=phase_idx,
                 spent_duration=tls_data.get(traci.constants.TL_SPENT_DURATION, 0.0),
                 next_switch=tls_data.get(traci.constants.TL_NEXT_SWITCH, 0.0),
-                current_program=tls_data.get(traci.constants.TL_CURRENT_PROGRAM, "unknown")
+                current_program=tls_data.get(traci.constants.TL_CURRENT_PROGRAM, "unknown"),
+                phase_name=PHASE_DIRECTIONS.get(phase_idx, "Unknown Phase")
             )
             
             # Convert to dictionary immediately
@@ -53,3 +62,20 @@ def get_traffic_lights_data() -> Dict[str, dict]:
             continue
 
     return tls_response
+
+
+def get_phase_info(tls_id: str) -> dict:
+    program = traci.trafficlight.getAllProgramLogics(tls_id)[0]
+    current_phase = traci.trafficlight.getPhase(tls_id)
+    return {
+        "current_phase": current_phase,
+        "phase_name": PHASE_DIRECTIONS.get(current_phase, "Unknown"),
+        "phase_duration": traci.trafficlight.getPhaseDuration(tls_id),
+        "next_phases": [
+            {
+                "index": (current_phase + i) % len(program.phases),
+                "name": PHASE_DIRECTIONS.get((current_phase + i) % len(program.phases), "Unknown")
+            } 
+            for i in range(1, 3)  # Show next 2 phases
+        ]
+    }

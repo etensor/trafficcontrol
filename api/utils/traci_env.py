@@ -2,6 +2,7 @@ import sys
 import os
 import subprocess
 import json
+from typing import Dict, List
 import traci
 
 from pathlib import Path
@@ -17,6 +18,7 @@ sumo_cfg = json.loads(sumo_cfg_path.read_text())
 from services.sensors_service import subscribe_e1_sensors, subscribe_e2_sensors
 from services.traffic_light_service import subscribe_traffic_lights
 
+from .traci_subscriptions import subscription_manager
 
 #sumo_cfg = json.load(open('./sumo_config.json'))
 
@@ -38,37 +40,88 @@ def set_simulation_time_step(step_length: float = 16.6): # en ms
     traci.simulation.setDeltaT(step_length)
 
 
+
 def initialize_traci(
-        cfg_file : str = sumo_cfg['cfg_file'],
-        #net_file : str = sumo_cfg['net_file'],
-        #route_file : str = sumo_cfg['route_file'],  
-        #add_file : None | str = sumo_cfg['add_file'],
-        use_gui : bool = sumo_cfg['use_gui'],
-        port : int = sumo_cfg['port'],
-        step_length : float = None): # seconds
+    use_gui: bool = False,
+    step_length: float = 1.0,
+    autostart: bool = True,
+    gui_delay: int = 20,
+    num_steps: int = 0
+) -> subprocess.Popen:
     
+    """Initialize SUMO simulation with TraCI connection
+    
+    Args:
+        use_gui: Launch SUMO with graphical interface
+        step_length: Simulation time step in seconds
+        autostart: Auto-begin simulation (GUI only)
+        gui_delay: Visualization delay per step in ms
+        num_steps: Immediate steps to execute (headless only)
+    """
+    # Base command
     sumo_bin = 'sumo-gui' if use_gui else 'sumo'
+    cmd = [
+        sumo_bin,
+        '-c', sumo_cfg['cfg_file'],
+        '--remote-port', str(sumo_cfg['port']),
+        '--step-length', str(step_length)
+    ]
 
-    #sumo_cmd = [sumo_bin, '-c', cfg_file, '-n', net_file, '-r', route_file]
-    #if add_file:
-    #    sumo_cmd.extend(['-a', add_file])
-    sumo_cmd = [sumo_bin, '-c', cfg_file, '--remote-port', str(port)]
-    if step_length > 0 and step_length <= 1:
-        sumo_cmd.extend(['--step-length', str(step_length)])
-
-    process = subprocess.Popen(sumo_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #traci.start(sumo_cmd)
+    # GUI-specific parameters
+    if use_gui:
+        if autostart:
+            cmd.append('--start')
+        cmd.extend(['--delay', str(gui_delay)])
     
-    # init traci conn
-    traci.init(port=port)
+    # Start process
+    process = subprocess.Popen(cmd)
+    traci.init(sumo_cfg['port'])
 
 
-    # Subscribe to sumo tcp streams
-    subscribe_e1_sensors()
-    subscribe_e2_sensors()
-    subscribe_traffic_lights()
+    # sensor_map = {
+    #     'e1': _map_sensors(traci.inductionloop.getIDList(), 'E1'),
+    #     'e2': _map_sensors(traci.lanearea.getIDList(), 'E2')
+    # }
+    
+    # # Subscribe to data streams
+    # subscribe_e1_sensors(sensor_map['e1'])
+    # subscribe_e2_sensors(sensor_map['e2'])
+    # subscribe_traffic_lights()
 
-    return process # -> pid -> app.state.sumo_pid
+    # Init subscriptions (traci)
+    subscription_manager.subscribe_all()
+
+
+    # Initial steps for headless mode
+    
+    if num_steps > 0 or (use_gui and autostart):
+        for _ in range(num_steps):
+            traci.simulationStep()
+
+    return process
+
+
+def _map_sensors(sensor_ids: List[str], sensor_type: str) -> Dict[str, dict]:
+    """Create human-readable sensor mapping"""
+    mapping = {}
+    for sid in sensor_ids:
+        parts = sid.split('_')
+        if len(parts) >= 3:
+            # Assumes format: E2_E0, E2_N1, etc.
+            direction = parts[1][0]  # E, W, N, S
+            lane_number = parts[1][1:] or parts[-1]
+            readable_name = f"{direction}-{lane_number}"
+        else:
+            readable_name = sid
+            
+        mapping[sid] = {
+            'id': sid,
+            'type': sensor_type,
+            'direction': direction if len(parts) >=3 else 'unknown',
+            'lane': lane_number if len(parts) >=3 else 'unknown',
+            'readable_name': readable_name
+        }
+    return mapping
 
 
 

@@ -25,7 +25,9 @@
     <script>
         // Create the JSON editor
         const container = document.getElementById('jsoneditor');
-        const options = {};
+        const options = {
+            expandAll: true // Set expandAll option to true
+        };
         const editor = new JSONEditor(container, options);
 
         // WebSocket connection
@@ -55,7 +57,7 @@
             console.error(`[error] ${error.message}`);
         };
 
-
+        
     </script>
 </body>
 </html>

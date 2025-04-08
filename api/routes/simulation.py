@@ -231,42 +231,24 @@ async def run_simulation(
 async def toggle_pause_simulation(request: Request):
     app = request.app
 
-    if not hasattr(app.state, "sumo_conn"):
+    if not traci.isLoaded():
         return {"status": "Simulation not running"}
-    
-    # Toggle pause state
-    app.state.paused = not getattr(app.state, "paused", False)
-    
-    # Immediate TraCI pause control
-    if app.state.paused:
-        traci.simulation.setStopTime(traci.simulation.getTime() + 1)
+
+    # Initialize pause_event if it doesn't exist
+    if not hasattr(app.state, "pause_event"):
+        app.state.pause_event = asyncio.Event()
+        app.state.status_message = "Simulation running"
+        app.state.pause_event.set() # Initially running
+
+    # Toggle pause state of the event
+    if app.state.pause_event.is_set():
+        app.state.pause_event.clear()  # Pause simulation
+        app.state.status_message = "Simulation paused"
     else:
-        traci.simulation.setStopTime(-1)  # Resume
-    
-    return {"paused": app.state.paused}
+        app.state.pause_event.set()  # Resume simulation
+        app.state.status_message = "Simulation running"
 
-    # if not hasattr(app.state, 'sumo_pid') or not app.state.sumo_pid:
-    #     return {"status": "No active simulation"}
-    
-    # # Toggle the existing pause_event flag logic
-    # if app.state.pause_event.is_set():
-    #     app.state.pause_event.clear()  # Resume simulation
-    #     app.state.status_message = "Simulation running"
-    # else:
-    #     app.state.pause_event.set()  # Pause simulation
-    #     app.state.status_message = "Simulation paused"
-    
-    # return {"message": app.state.status_message}
-
-    # Toggle between pause and resume
-    # if hasattr(app.state, 'pause_event') and app.state.pause_event:
-    #     # Resume the simulation
-    #     app.state.pause_event = False
-    #     return {"status": "Simulation resumed"}
-    # else:
-    #     # Pause the simulation
-    #     app.state.pause_event = True
-    #     return {"status": "Simulation paused"}
+    return {"message": app.state.status_message, "paused": not app.state.pause_event.is_set()}
 
 
 

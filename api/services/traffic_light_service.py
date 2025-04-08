@@ -50,7 +50,7 @@ def get_traffic_lights_data() -> Dict[str, dict]:
                 current_phase=phase_idx,
                 spent_duration=tls_data.get(traci.constants.TL_SPENT_DURATION, 0.0),
                 next_switch=tls_data.get(traci.constants.TL_NEXT_SWITCH, 0.0),
-                current_program=tls_data.get(traci.constants.TL_CURRENT_PROGRAM, "unknown"),
+                #current_program=tls_data.get(traci.constants.TL_CURRENT_PROGRAM, "unknown"),
                 phase_name=PHASE_DIRECTIONS.get(phase_idx, "Unknown Phase")
             )
             

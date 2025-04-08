@@ -11,7 +11,7 @@ class TrafficLightData(BaseModel):
     phase_duration: Optional[float] = None  # Time remaining in the current phase
     spent_duration: Optional[float] = None  # Time spent in current phase
     next_switch: Optional[float] = None  # Time for the next switch
-    current_program: Optional[str] = None  # Current traffic light program
+    # current_program: Optional[str] = None  # Current traffic light program
     #controlled_lanes: Optional[List[str]] = []  # Lanes c
 
 

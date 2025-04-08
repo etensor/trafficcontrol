@@ -1,0 +1,40 @@
+{
+  "hash": "472915f9",
+  "configHash": "78c04fd4",
+  "lockfileHash": "e8291352",
+  "browserHash": "0275eecb",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "7edc4981",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "1f57e9bd",
+      "needsInterop": true
+    },
+    "@uiw/react-json-view": {
+      "src": "../../node_modules/@uiw/react-json-view/esm/index.js",
+      "file": "@uiw_react-json-view.js",
+      "fileHash": "19d8ef6d",
+      "needsInterop": false
+    },
+    "@uiw/react-json-view/githubDark": {
+      "src": "../../node_modules/@uiw/react-json-view/esm/theme/github.dark.js",
+      "file": "@uiw_react-json-view_githubDark.js",
+      "fileHash": "6181f322",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-KS2M7ZJI": {
+      "file": "chunk-KS2M7ZJI.js"
+    },
+    "chunk-5WRI5ZAA": {
+      "file": "chunk-5WRI5ZAA.js"
+    }
+  }
+}

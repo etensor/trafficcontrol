@@ -1,7 +1,9 @@
 import json
 import sys
 import os
+from contextlib import asynccontextmanager
 
+from fastapi.responses import StreamingResponse
 import traci
 
 from model.environment import TrafficControlEnv
@@ -58,7 +60,6 @@ async def get_simulation_status(request: Request):
 async def stop_simulation(request: Request):
     try:
         app = request.app
-        #app.state.pause_event = True # set flag
         
         try:
             traci_env.traci.close() # attempt to close traci connection
@@ -69,6 +70,8 @@ async def stop_simulation(request: Request):
                 # X traci_env.close_traci() # -> traci.terminate
                 app.state.status_message = "Simulation stopped"
                 app.state.sumo_pid = None
+
+                traci.close()
             else:
                 app.state.status_message = "No active simulation to stop"
                 return {"status": "Simulation not running"}
@@ -118,7 +121,7 @@ async def simulation_step(
         
         executed = 0
         for _ in range(steps):
-            if app.state.pause_event:
+            if app.state.pause_event.is_set():
                 traci_env.simulationStep()
                 executed += 1
             else:
@@ -162,9 +165,12 @@ async def start_simulation(
             num_steps=num_steps
         )
 
-        if hasattr(app.state, "pause_event"):
+
+        if not hasattr(app.state, "pause_event"):
+            app.state.pause_event = asyncio.Event()
+            app.state.pause_event.set()  # Start running
+        else:
             app.state.status_message = "Simulation running"
-            app.state.pause_event.set() # Initially running
 
 
         app.state.sumo_pid = proc
@@ -206,36 +212,31 @@ async def run_simulation(
     app = request.app
     app.state.status_message = "Simulation running"
 
-        # Initialize pause_event if it doesn't exist
-    if not hasattr(app.state, "pause_event"):
-        app.state.pause_event = asyncio.Event()
-        app.state.status_message = "Simulation running"
-        app.state.pause_event.set() # Initially running
-    
     try:
-        while not app.state.pause_event:
+        proc = await traci_env.initialize_traci(
+            use_gui=False,
+            step_length=1,
+            gui_delay=timestep,
+            num_steps=100000
+        )
 
+        n = 0
+        while n <= 100000: # 100k steps
+            # Check if simulation is paused
+            await app.state.pause_event.wait()
             
-            start = time.time()
+            # Perform simulation step
+            traci.simulationStep()
             
-            if not app.state.pause_event:
-                traci.simulationStep()
-                
-                # Maintain real-time pacing
-                elapsed = (time.time() - start) * 1000  # ms
-                sleep_time = max(0, timestep - elapsed) / 1000
-                await asyncio.sleep(sleep_time)
-            else:
-                await asyncio.sleep(0.1)
-                
-        return {"status": "Simulation stopped"}
-    
+            # Throttle to real-time pacing
+            await asyncio.sleep(timestep / 1000)  # Convert ms to seconds
+            n += 1
+        
+        proc.terminate()
+            
     except traci.TraCIException as e:
         logger.error(f"TraCI error: {str(e)}")
         raise HTTPException(500, detail="Lost connection to SUMO")
-    except Exception as e:
-        logger.error(f"Runtime error: {str(e)}")
-        raise HTTPException(500, detail="Simulation execution failed")
 
 
 
@@ -245,21 +246,21 @@ async def run_simulation(
 @sim_router.post("/simulation/pause_simulation", tags=["Simulation"])
 async def pause_simulation(request: Request):
     app = request.app
+    
+    if not hasattr(app.state, "pause_event"):
+        raise HTTPException(500, "Simulation not initialized")
 
-    if not traci.isLoaded():
-        return {"status": "Simulation not running"}
-
-
-    # Toggle pause state of the event
+    # Toggle state
     if app.state.pause_event.is_set():
-        app.state.pause_event.clear()  # Pause simulation
+        app.state.pause_event.clear()
+        status = "paused"
         app.state.status_message = "Simulation paused"
-        await asyncio.sleep(0.1)  # reduce CPU usage
     else:
-        app.state.pause_event.set()  # Resume simulation
-        app.state.status_message = "Simulation running"
+        app.state.pause_event.set()
+        status = "running"
+        app.state.status_message = "Simulation resumed"
 
-    return {"message": app.state.status_message, "paused": not app.state.pause_event.is_set()}
+    return {"status": status, "paused": not app.state.pause_event.is_set()}
 
 
 
@@ -273,6 +274,114 @@ async def test_tls_data():
         "raw_e2_aggregate": data_aggregate,
         "sensors_ids": sensors_ids
     }
+
+
+@sim_router.post("/simulation/streaming-start", tags=["Simulation"])
+async def streaming_start_simulation(
+    request: Request,
+    use_gui: bool = Query(False),
+    step_length: float = Query(1.0)
+):
+    """Start simulation with real-time streaming updates"""
+    app = request.app
+    
+    async def event_stream():
+        # Check for existing live process
+        if hasattr(app.state, 'sumo_pid') and app.state.sumo_pid:
+            if app.state.sumo_pid.returncode is None:
+                yield {"status": "already_running", "pid": app.state.sumo_pid.pid}
+                
+                # Verify TraCI connection
+                if traci.isLoaded():
+                    try:
+                        traci.simulation.getTime()
+                        yield {"status": "reusing_connection"}
+                    except traci.TraCIException:
+                        traci.close()
+                        yield {"status": "reconnecting"}
+                        await _initialize_traci_connection()
+                else:
+                    await _initialize_traci_connection()
+                
+                # Skip to streaming
+                yield {"status": "ready"}
+                await _stream_simulation_status()
+                return
+            else:
+                # Clean dead process
+                app.state.sumo_pid = None
+                yield {"status": "cleaned_zombie"}
+
+        # Fresh start
+        try:
+            proc = await asyncio.create_subprocess_exec(
+                'sumo-gui' if use_gui else 'sumo',
+                '-c', sumo_cfg['cfg_file'],
+                '--remote-port', str(sumo_cfg['port']),
+                '--step-length', str(step_length),
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.STDOUT
+            )
+            app.state.sumo_pid = proc
+            yield {"status": "process_started", "pid": proc.pid}
+
+            await _initialize_traci_connection()
+            yield {"status": "connected"}
+            
+            # Initialize pause event if not exists
+            if not hasattr(app.state, "pause_event"):
+                app.state.pause_event = asyncio.Event()
+                app.state.pause_event.set()
+            
+            await _stream_simulation_status()
+            
+        except Exception as e:
+            yield {"status": "error", "detail": str(e)}
+            if hasattr(app.state, 'sumo_pid') and app.state.sumo_pid:
+                app.state.sumo_pid.terminate()
+                app.state.sumo_pid = None
+
+
+    async def _initialize_traci_connection():
+        """Helper to establish TraCI connection"""
+        for attempt in range(3):
+            try:
+                traci.init(sumo_cfg['port'])
+                return
+            except traci.FatalTraCIError:
+                await asyncio.sleep(0.5 * (attempt + 1))
+        raise ConnectionError("Failed to connect to SUMO")
+
+
+    async def _stream_simulation_status():
+        """Continuous status updates"""
+        while True:
+            if not app.state.sumo_pid or app.state.sumo_pid.returncode is not None:
+                yield {"status": "process_terminated"}
+                break
+                
+            try:
+                yield {
+                    "status": "running",
+                    "time": traci.simulation.getTime(),
+                    "vehicles": traci.vehicle.getIDCount(),
+                    "paused": not app.state.pause_event.is_set(),
+                    "timestamp": time.time()
+                }
+                await asyncio.sleep(0.5)  # Update interval
+            except traci.TraCIException:
+                yield {"status": "connection_lost"}
+                break
+
+    return StreamingResponse(
+        event_stream(),
+        media_type="application/x-ndjson",
+        headers={
+            "X-Content-Type-Options": "nosniff",
+            "Cache-Control": "no-cache"
+        }
+    )
+
 
 
 # ## Training the model API
@@ -311,43 +420,34 @@ async def websocket_simulation_ctrl(ws: WebSocket):
     
     try:
         while True:
-            current_step = traci.simulation.getTime()
-            # Check simulation status
             if not app.state.sumo_pid or not traci.isLoaded():
                 await ws.send_json({"error": "Simulation not running"})
-                break
-            
-            # Get current simulation time
-            current_time = traci.simulation.getTime()
+                await asyncio.sleep(1)
+                continue
 
-            if current_time != last_step or app.state.pause_event.is_set():
+            # Pause handling
+            if not app.state.pause_event.is_set():
+                # Send paused status once
                 response = await _build_websocket_response(app)
-                response["paused"] = app.state.pause_event.is_set()
+                response.update({"paused": True, "message": "Simulation paused"})
+                await ws.send_json(response)
+                
+                # Wait until resumed
+                await app.state.pause_event.wait()
+                continue
+
+            # Normal operation: send updates
+            current_time = traci.simulation.getTime()
+            if current_time != last_step:
+                response = await _build_websocket_response(app)
+                response["paused"] = False
                 await ws.send_json(response)
                 last_step = current_time
-            
-            await asyncio.sleep(0.001)
 
-            # if app.state.pause_event.is_set():
-            #     await asyncio.sleep(0.1)
-            
-            # # Only send updates when simulation progresses or pause state changes
-            # if current_time != last_step or app.state.pause_event.is_set():
-            #     response = await _build_websocket_response(app)
-            #     response["paused"] = app.state.pause_event.is_set()
-            #     await ws.send_json(response)
-            #     last_step = current_time
-                
-            # # Non-blocking sleep to maintain real-time updates
-            # await asyncio.sleep(0)  # Yield control to event loop
+            await asyncio.sleep(0.01)  # Prevent tight loop
 
     except WebSocketDisconnect:
-        logger.info("Client disconnected normally")
-    except Exception as e:
-        logger.error(f"WebSocket error: {str(e)}")
-    finally:
-        await ws.close()
-
+        logger.info("Client disconnected")
 
     #     _validate_simulation_state(app)
     #     start_time = time.time()

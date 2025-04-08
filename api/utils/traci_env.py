@@ -50,7 +50,6 @@ async def initialize_traci(
     num_steps: int = 0
 ) -> asyncio.subprocess.Process:
 # -> subprocess.Popen:
-    
     """Initialize SUMO simulation with TraCI connection
     
     Args:
@@ -60,6 +59,11 @@ async def initialize_traci(
         gui_delay: Visualization delay per step in ms
         num_steps: Immediate steps to execute (headless only)
     """
+
+    if traci.isLoaded():
+        print("SUMO is already running")
+        return
+
     # Base command
     sumo_bin = 'sumo-gui' if use_gui else 'sumo'
     cmd = [

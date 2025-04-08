@@ -58,7 +58,8 @@ async def get_simulation_status(request: Request):
 async def stop_simulation(request: Request):
     try:
         app = request.app
-        app.state.pause_event = True # set flag
+        #app.state.pause_event = True # set flag
+        
         try:
             traci_env.traci.close() # attempt to close traci connection
             await asyncio.sleep(1) # wait for it to stop gracefully
@@ -153,13 +154,19 @@ async def start_simulation(
 
         app.state.status_message = "Simulation starting..."
 
-        proc = traci_env.initialize_traci(
+        proc = await traci_env.initialize_traci(
             use_gui=use_gui,
             step_length=step_length,
             autostart=autostart,
             gui_delay=gui_delay,
             num_steps=num_steps
         )
+
+        if hasattr(app.state, "pause_event"):
+            app.state.status_message = "Simulation running"
+            app.state.pause_event.set() # Initially running
+
+
         app.state.sumo_pid = proc
         app.state.status_message = f"Simulation started on port {str(sumo_cfg['port'])} with PID {proc.pid}"
         
@@ -167,7 +174,8 @@ async def start_simulation(
             "status": f"Simulation {'GUI' if use_gui else 'headless'} started",
             "steps_executed": num_steps,
             "port": sumo_cfg['port'],
-            "message": app.state.status_message
+            "message": app.state.status_message,
+            "pid": proc.pid
         }
     
     except FileNotFoundError as e:
@@ -196,11 +204,18 @@ async def run_simulation(
 ):
     """Run continuous simulation with flow control"""
     app = request.app
-    app.state.pause_event = False
     app.state.status_message = "Simulation running"
+
+        # Initialize pause_event if it doesn't exist
+    if not hasattr(app.state, "pause_event"):
+        app.state.pause_event = asyncio.Event()
+        app.state.status_message = "Simulation running"
+        app.state.pause_event.set() # Initially running
     
     try:
         while not app.state.pause_event:
+
+            
             start = time.time()
             
             if not app.state.pause_event:
@@ -227,23 +242,19 @@ async def run_simulation(
 
 
 # pause and resume actions
-@sim_router.post("/simulation/toggle_pause", tags=["Simulation"])
-async def toggle_pause_simulation(request: Request):
+@sim_router.post("/simulation/pause_simulation", tags=["Simulation"])
+async def pause_simulation(request: Request):
     app = request.app
 
     if not traci.isLoaded():
         return {"status": "Simulation not running"}
 
-    # Initialize pause_event if it doesn't exist
-    if not hasattr(app.state, "pause_event"):
-        app.state.pause_event = asyncio.Event()
-        app.state.status_message = "Simulation running"
-        app.state.pause_event.set() # Initially running
 
     # Toggle pause state of the event
     if app.state.pause_event.is_set():
         app.state.pause_event.clear()  # Pause simulation
         app.state.status_message = "Simulation paused"
+        await asyncio.sleep(0.1)  # reduce CPU usage
     else:
         app.state.pause_event.set()  # Resume simulation
         app.state.status_message = "Simulation running"
@@ -259,7 +270,6 @@ async def test_tls_data():
     sensors_ids = sensors_service.get_sensor_ids()
     return {
         "raw": data,
-        "json_ready": json.dumps(data, default=str),
         "raw_e2_aggregate": data_aggregate,
         "sensors_ids": sensors_ids
     }
@@ -310,13 +320,13 @@ async def websocket_simulation_ctrl(ws: WebSocket):
             # Get current simulation time
             current_time = traci.simulation.getTime()
 
-            if current_step != last_step or getattr(app.state, "paused", False):
+            if current_time != last_step or app.state.pause_event.is_set():
                 response = await _build_websocket_response(app)
-                response["paused"] = getattr(app.state, "paused", False)
+                response["paused"] = app.state.pause_event.is_set()
                 await ws.send_json(response)
-                last_step = current_step
+                last_step = current_time
             
-            await asyncio.sleep(0.01)
+            await asyncio.sleep(0.001)
 
             # if app.state.pause_event.is_set():
             #     await asyncio.sleep(0.1)

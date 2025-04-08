@@ -1,3 +1,4 @@
+import asyncio
 import sys
 import os
 import subprocess
@@ -41,13 +42,14 @@ def set_simulation_time_step(step_length: float = 16.6): # en ms
 
 
 
-def initialize_traci(
+async def initialize_traci(
     use_gui: bool = False,
     step_length: float = 1.0,
     autostart: bool = True,
     gui_delay: int = 20,
     num_steps: int = 0
-) -> subprocess.Popen:
+) -> asyncio.subprocess.Process:
+# -> subprocess.Popen:
     
     """Initialize SUMO simulation with TraCI connection
     
@@ -74,9 +76,21 @@ def initialize_traci(
         cmd.extend(['--delay', str(gui_delay)])
     
     # Start process
-    process = subprocess.Popen(cmd)
-    traci.init(sumo_cfg['port'])
-
+    #process = subprocess.Popen(cmd)
+    proc = await asyncio.create_subprocess_exec(
+        *cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT
+    )
+    #traci.init(sumo_cfg['port'])
+    for _ in range(3):
+        try:
+            traci.init(sumo_cfg['port'])
+            # Init subscriptions (traci)
+            subscription_manager.subscribe_all()
+            return proc
+        except traci.FatalTraCIError:
+            await asyncio.sleep(0.5)
 
     # sensor_map = {
     #     'e1': _map_sensors(traci.inductionloop.getIDList(), 'E1'),
@@ -88,17 +102,8 @@ def initialize_traci(
     # subscribe_e2_sensors(sensor_map['e2'])
     # subscribe_traffic_lights()
 
-    # Init subscriptions (traci)
-    subscription_manager.subscribe_all()
+    raise ConnectionError("Failed to connect to SUMO")
 
-
-    # Initial steps for headless mode
-    
-    if num_steps > 0 or (use_gui and autostart):
-        for _ in range(num_steps):
-            traci.simulationStep()
-
-    return process
 
 
 def _map_sensors(sensor_ids: List[str], sensor_type: str) -> Dict[str, dict]:

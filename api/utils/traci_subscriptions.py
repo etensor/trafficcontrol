@@ -9,6 +9,8 @@ class SubscriptionManager:
         """Initialize all TraCI subscriptions"""
         if self._subscribed:
             return
+
+        self._subscribed = True
             
         # Traffic Lights
         for tls_id in traci.trafficlight.getIDList():
@@ -44,7 +46,7 @@ class SubscriptionManager:
                 ]
             )
             
-        self._subscribed = True
+        
 
 
 subscription_manager = SubscriptionManager()
